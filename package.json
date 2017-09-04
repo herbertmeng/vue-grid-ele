@@ -1,8 +1,8 @@
 {
   "name": "@vue/table",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "a vue table component",
-  "main": "src/dist/index.js",
+  "main": "src/dist/v-table.js",
   "license": "MIT",
   "repository": {
     "type": "git",
