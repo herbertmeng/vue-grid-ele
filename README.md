@@ -6,7 +6,7 @@ npm install @vue/table
 ```
 ```js
 import VTable from '@vue/table'
-import '@vue/table/dist/v-table.css
+import '@vue/table/dist/v-table.css'
 ```
 
 or
