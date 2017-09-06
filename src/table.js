@@ -1,6 +1,6 @@
 import _ from 'lodash'
-import table from 'element-ui/lib/table'
-import tableColumn from 'element-ui/lib/table-column'
+import table from './packages/table'
+import tableColumn from './packages/table-column'
 const createHead = function (columns) {
   const h = this.$createElement // eslint-disable-line
   return columns.map((col, index) => {
@@ -18,21 +18,21 @@ const createHead = function (columns) {
     const colProps = {
       attrs: _.omit(col, 'render')
     }
-    return (<el-table-column key={col.label || index} scopedSlots={scopedSlots} {...colProps}>
+    return (<v-table-column key={col.label || index} scopedSlots={scopedSlots} {...colProps}>
       {children}
-    </el-table-column>)
+    </v-table-column>)
   })
 }
 export default {
   inheritAttrs: false,
-  name: 'v-table',
+  name: 'v-grid',
   render () {
     const tableProps = {
       attrs: _.omit(this.$attrs, _.keys(this.$props))
     }
-    return (<el-table {...tableProps}>
+    return (<v-table {...tableProps}>
       {createHead.call(this, this.columns)}
-    </el-table>)
+    </v-table>)
   },
   props: {
     columns: {
@@ -41,7 +41,7 @@ export default {
     }
   },
   components: {
-    [table.name]: table,
-    [tableColumn.name]: tableColumn
+    vTable: table,
+    vTableColumn: tableColumn
   }
 }

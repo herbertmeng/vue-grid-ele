@@ -1,6 +1,6 @@
 {
   "name": "@vue/table",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "a vue table component",
   "main": "src/dist/v-table.js",
   "license": "MIT",
@@ -10,8 +10,10 @@
   },
   "keywords": [],
   "dependencies": {
+    "async-validator": "^1.8.1",
+    "deepmerge": "^1.5.1",
     "lodash": "^4.17.4",
-    "vue": "^2.4.2"
+    "throttle-debounce": "^1.0.1"
   },
   "devDependencies": {
     "@fedor/progress-webpack-plugin": "^1.0.0",
@@ -29,7 +31,6 @@
     "babel-preset-stage-2": "^6.24.1",
     "cross-env": "^5.0.5",
     "css-loader": "^0.28.4",
-    "element-ui": "^1.4.3",
     "env-parse": "^1.0.5",
     "extract-text-webpack-plugin": "^3.0.0",
     "file-loader": "^0.11.2",
@@ -43,6 +44,9 @@
     "webpack-dev-server": "^2.7.1",
     "webpack-merge": "^4.1.0"
   },
+  "peerDependencies": {
+    "vue": "^2.4.2"
+  },
   "scripts": {
     "dev": "npm test && cross-env NODE_ENV=development webpack-dev-server --config ./.build/webpack.config.dev.js --hot",
     "build": "npm test && cross-env NODE_ENV=production webpack --config ./.build/webpack.config.prod.js",
@@ -51,5 +55,8 @@
     "test": "npm run lint",
     "publish": "npm run build",
     "start": "npm run dev"
+  },
+  "standard":{
+    "ignore":["src/packages","src/src"]
   }
 }
