@@ -7,6 +7,10 @@
 .npmignore
 .editorconfig
 .eslintrc*
+.build
+.config
+.env
+.gitlab-ci.*
 t.*
 [a-z0-9].*
 *.log

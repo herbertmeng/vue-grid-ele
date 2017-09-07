@@ -1,8 +1,8 @@
 {
   "name": "@vue/table",
-  "version": "1.0.5",
+  "version": "1.0.0",
   "description": "a vue table component",
-  "main": "src/dist/v-table.js",
+  "main": "dist/v-table.bundle.js",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -62,5 +62,11 @@
       "src/packages",
       "src/src"
     ]
-  }
+  },
+  "maintainers": [
+    {
+      "name": "public",
+      "email": "rayjump@163.com"
+    }
+  ]
 }
