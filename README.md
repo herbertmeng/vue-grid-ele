@@ -4,7 +4,9 @@
 
 # vue-table
 vue table component
+
 ## usage
+
 ```bash
 npm install @vue/table
 ```
@@ -19,11 +21,13 @@ import VTable from '@vue/table/dist/v-table.bundle.js'
 ```
 
 ### build thead by template
+
 ```js
 import {table,tableColumn} from '@vue/table'
 ```
 
 ## props
+
 ### columns
 #### render:function
 定制化表格内容
@@ -45,23 +49,10 @@ import {table,tableColumn} from '@vue/table'
 :::demo 当`v-table`元素中注入`data`对象数组后，在`v-table-column`中用`prop`属性来对应对象中的键名即可填入数据，用`label`属性来定义表格的列名。可以使用`width`属性来定义列宽。
 ```html
   <template>
-    <v-table
-      :data="tableData"
-      style="width: 100%">
-      <v-table-column
-        prop="date"
-        label="日期"
-        width="180">
-      </v-table-column>
-      <v-table-column
-        prop="name"
-        label="姓名"
-        width="180">
-      </v-table-column>
-      <v-table-column
-        prop="address"
-        label="地址">
-      </v-table-column>
+    <v-table :data="tableData" style="width: 100%">
+      <v-table-column prop="date" label="日期" width="180"></v-table-column>
+      <v-table-column prop="name" label="姓名" width="180"></v-table-column>
+      <v-table-column prop="address" label="地址"></v-table-column>
     </v-table>
   </template>
 
@@ -69,23 +60,12 @@ import {table,tableColumn} from '@vue/table'
     export default {
       data() {
         return {
-          tableData: [{
-            date: '2016-05-02',
-            name: '王小虎',
-            address: '上海市普陀区金沙江路 1518 弄'
-          }, {
-            date: '2016-05-04',
-            name: '王小虎',
-            address: '上海市普陀区金沙江路 1517 弄'
-          }, {
-            date: '2016-05-01',
-            name: '王小虎',
-            address: '上海市普陀区金沙江路 1519 弄'
-          }, {
-            date: '2016-05-03',
-            name: '王小虎',
-            address: '上海市普陀区金沙江路 1516 弄'
-          }]
+          tableData: [
+           { date: '2016-05-02', name: '王小虎', address: '上海市普陀区金沙江路 1518 弄' },
+           { date: '2016-05-04', name: '王小虎', address: '上海市普陀区金沙江路 1517 弄' },
+           { date: '2016-05-01', name: '王小虎', address: '上海市普陀区金沙江路 1519 弄' },
+           { date: '2016-05-03', name: '王小虎', address: '上海市普陀区金沙江路 1516 弄' }
+          ]
         }
       }
     }
@@ -100,24 +80,10 @@ import {table,tableColumn} from '@vue/table'
 :::demo `stripe`属性可以创建带斑马纹的表格。它接受一个`Boolean`，默认为`false`，设置为`true`即为启用。
 ```html
 <template>
-  <v-table
-    :data="tableData"
-    stripe
-    style="width: 100%">
-    <v-table-column
-      prop="date"
-      label="日期"
-      width="180">
-    </v-table-column>
-    <v-table-column
-      prop="name"
-      label="姓名"
-      width="180">
-    </v-table-column>
-    <v-table-column
-      prop="address"
-      label="地址">
-    </v-table-column>
+  <v-table :data="tableData" stripe style="width: 100%">
+    <v-table-column prop="date" label="日期" width="180"></v-table-column>
+    <v-table-column prop="name" label="姓名" width="180"></v-table-column>
+    <v-table-column prop="address" label="地址"></v-table-column>
   </v-table>
 </template>
 
@@ -125,23 +91,12 @@ import {table,tableColumn} from '@vue/table'
   export default {
     data() {
       return {
-        tableData: [{
-          date: '2016-05-02',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        }, {
-          date: '2016-05-04',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1517 弄'
-        }, {
-          date: '2016-05-01',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1519 弄'
-        }, {
-          date: '2016-05-03',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1516 弄'
-        }]
+        tableData: [
+         { date: '2016-05-02', name: '王小虎', address: '上海市普陀区金沙江路 1518 弄' },
+         { date: '2016-05-04', name: '王小虎', address: '上海市普陀区金沙江路 1517 弄' },
+         { date: '2016-05-01', name: '王小虎', address: '上海市普陀区金沙江路 1519 弄' },
+         { date: '2016-05-03', name: '王小虎', address: '上海市普陀区金沙江路 1516 弄' }
+        ]
       }
     }
   }
@@ -154,24 +109,10 @@ import {table,tableColumn} from '@vue/table'
 :::demo 默认情况下，Table 组件是不具有竖直方向的边框的，如果需要，可以使用`border`属性，它接受一个`Boolean`，设置为`true`即可启用。
 ```html
 <template>
-  <v-table
-    :data="tableData"
-    border
-    style="width: 100%">
-    <v-table-column
-      prop="date"
-      label="日期"
-      width="180">
-    </v-table-column>
-    <v-table-column
-      prop="name"
-      label="姓名"
-      width="180">
-    </v-table-column>
-    <v-table-column
-      prop="address"
-      label="地址">
-    </v-table-column>
+  <v-table :data="tableData" border style="width: 100%">
+    <v-table-column prop="date" label="日期" width="180"></v-table-column>
+    <v-table-column prop="name" label="姓名" width="180"></v-table-column>
+    <v-table-column prop="address" label="地址"></v-table-column>
   </v-table>
 </template>
 
@@ -179,23 +120,12 @@ import {table,tableColumn} from '@vue/table'
   export default {
     data() {
       return {
-        tableData: [{
-          date: '2016-05-02',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        }, {
-          date: '2016-05-04',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1517 弄'
-        }, {
-          date: '2016-05-01',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1519 弄'
-        }, {
-          date: '2016-05-03',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1516 弄'
-        }]
+        tableData: [
+         { date: '2016-05-02', name: '王小虎', address: '上海市普陀区金沙江路 1518 弄' },
+         { date: '2016-05-04', name: '王小虎', address: '上海市普陀区金沙江路 1517 弄' },
+         { date: '2016-05-01', name: '王小虎', address: '上海市普陀区金沙江路 1519 弄' },
+         { date: '2016-05-03', name: '王小虎', address: '上海市普陀区金沙江路 1516 弄' }
+        ]
       }
     }
   }
@@ -210,35 +140,16 @@ import {table,tableColumn} from '@vue/table'
 :::demo 可以通过指定 Table 组件的 `row-class-name` 属性来为 Table 中的某一行添加 class，表明该行处于某种状态。
 ```html
 <template>
-  <v-table
-    :data="tableData2"
-    style="width: 100%"
-    :row-class-name="tableRowClassName">
-    <v-table-column
-      prop="date"
-      label="日期"
-      width="180">
-    </v-table-column>
-    <v-table-column
-      prop="name"
-      label="姓名"
-      width="180">
-    </v-table-column>
-    <v-table-column
-      prop="address"
-      label="地址">
-    </v-table-column>
+  <v-table :data="tableData2" style="width: 100%" :row-class-name="tableRowClassName">
+    <v-table-column prop="date" label="日期" width="180"></v-table-column>
+    <v-table-column prop="name" label="姓名" width="180"></v-table-column>
+    <v-table-column prop="address" label="地址"></v-table-column>
   </v-table>
 </template>
 
 <style>
-  .v-table .info-row {
-    background: #c9e5f5;
-  }
-
-  .v-table .positive-row {
-    background: #e2f0e4;
-  }
+  .v-table .info-row { background: #c9e5f5; }
+  .v-table .positive-row { background: #e2f0e4; }
 </style>
 
 <script>
@@ -255,23 +166,12 @@ import {table,tableColumn} from '@vue/table'
     },
     data() {
       return {
-        tableData2: [{
-          date: '2016-05-02',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄',
-        }, {
-          date: '2016-05-04',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        }, {
-          date: '2016-05-01',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄',
-        }, {
-          date: '2016-05-03',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        }]
+        tableData2: [
+          { date: '2016-05-02', name: '王小虎', address: '上海市普陀区金沙江路 1518 弄', },
+          { date: '2016-05-04', name: '王小虎', address: '上海市普陀区金沙江路 1518 弄' },
+          { date: '2016-05-01', name: '王小虎', address: '上海市普陀区金沙江路 1518 弄', },
+          { date: '2016-05-03', name: '王小虎', address: '上海市普陀区金沙江路 1518 弄' }
+        ]
       }
     }
   }
@@ -286,25 +186,10 @@ import {table,tableColumn} from '@vue/table'
 :::demo 只要在`v-table`元素中定义了`height`属性，即可实现固定表头的表格，而不需要额外的代码。
 ```html
 <template>
-  <v-table
-    :data="tableData3"
-    height="250"
-    border
-    style="width: 100%">
-    <v-table-column
-      prop="date"
-      label="日期"
-      width="180">
-    </v-table-column>
-    <v-table-column
-      prop="name"
-      label="姓名"
-      width="180">
-    </v-table-column>
-    <v-table-column
-      prop="address"
-      label="地址">
-    </v-table-column>
+  <v-table :data="tableData3" height="250" border style="width: 100%">
+    <v-table-column prop="date" label="日期" width="180"></v-table-column>
+    <v-table-column prop="name" label="姓名" width="180"></v-table-column>
+    <v-table-column prop="address" label="地址"></v-table-column>
   </v-table>
 </template>
 
@@ -312,35 +197,15 @@ import {table,tableColumn} from '@vue/table'
   export default {
     data() {
       return {
-        tableData3: [{
-          date: '2016-05-03',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        }, {
-          date: '2016-05-02',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        }, {
-          date: '2016-05-04',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        }, {
-          date: '2016-05-01',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        }, {
-          date: '2016-05-08',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        }, {
-          date: '2016-05-06',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        }, {
-          date: '2016-05-07',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        }]
+        tableData3: [
+          { date: '2016-05-03', name: '王小虎', address: '上海市普陀区金沙江路 1518 弄' },
+          { date: '2016-05-02', name: '王小虎', address: '上海市普陀区金沙江路 1518 弄' },
+          { date: '2016-05-04', name: '王小虎', address: '上海市普陀区金沙江路 1518 弄' },
+          { date: '2016-05-01', name: '王小虎', address: '上海市普陀区金沙江路 1518 弄' },
+          { date: '2016-05-08', name: '王小虎', address: '上海市普陀区金沙江路 1518 弄' },
+          { date: '2016-05-06', name: '王小虎', address: '上海市普陀区金沙江路 1518 弄' },
+          { date: '2016-05-07', name: '王小虎', address: '上海市普陀区金沙江路 1518 弄' }
+        ]
       }
     }
   }
@@ -355,45 +220,14 @@ import {table,tableColumn} from '@vue/table'
 :::demo 固定列需要使用`fixed`属性，它接受 Boolean 值或者`left` `right`，表示左边固定还是右边固定。
 ```html
 <template>
-  <v-table
-    :data="tableData"
-    border
-    style="width: 100%">
-    <v-table-column
-      fixed
-      prop="date"
-      label="日期"
-      width="150">
-    </v-table-column>
-    <v-table-column
-      prop="name"
-      label="姓名"
-      width="120">
-    </v-table-column>
-    <v-table-column
-      prop="province"
-      label="省份"
-      width="120">
-    </v-table-column>
-    <v-table-column
-      prop="city"
-      label="市区"
-      width="120">
-    </v-table-column>
-    <v-table-column
-      prop="address"
-      label="地址"
-      width="300">
-    </v-table-column>
-    <v-table-column
-      prop="zip"
-      label="邮编"
-      width="120">
-    </v-table-column>
-    <v-table-column
-      fixed="right"
-      label="操作"
-      width="100">
+  <v-table :data="tableData" border style="width: 100%">
+    <v-table-column fixed prop="date" label="日期" width="150"></v-table-column>
+    <v-table-column prop="name" label="姓名" width="120"></v-table-column>
+    <v-table-column prop="province" label="省份" width="120"></v-table-column>
+    <v-table-column prop="city" label="市区" width="120"></v-table-column>
+    <v-table-column prop="address" label="地址" width="300"></v-table-column>
+    <v-table-column prop="zip" label="邮编" width="120"></v-table-column>
+    <v-table-column fixed="right" label="操作" width="100">
       <template scope="scope">
         <v-button @click="handleClick" type="text" size="small">查看</v-button>
         <v-button type="text" size="small">编辑</v-button>
@@ -412,35 +246,12 @@ import {table,tableColumn} from '@vue/table'
 
     data() {
       return {
-        tableData: [{
-          date: '2016-05-03',
-          name: '王小虎',
-          province: '上海',
-          city: '普陀区',
-          address: '上海市普陀区金沙江路 1518 弄',
-          zip: 200333
-        }, {
-          date: '2016-05-02',
-          name: '王小虎',
-          province: '上海',
-          city: '普陀区',
-          address: '上海市普陀区金沙江路 1518 弄',
-          zip: 200333
-        }, {
-          date: '2016-05-04',
-          name: '王小虎',
-          province: '上海',
-          city: '普陀区',
-          address: '上海市普陀区金沙江路 1518 弄',
-          zip: 200333
-        }, {
-          date: '2016-05-01',
-          name: '王小虎',
-          province: '上海',
-          city: '普陀区',
-          address: '上海市普陀区金沙江路 1518 弄',
-          zip: 200333
-        }]
+        tableData: [
+         { date: '2016-05-03', name: '王小虎', province: '上海', city: '普陀区', address: '上海市普陀区金沙江路 1518 弄', zip: 200333 },
+         { date: '2016-05-02', name: '王小虎', province: '上海', city: '普陀区', address: '上海市普陀区金沙江路 1518 弄', zip: 200333 },
+         { date: '2016-05-04', name: '王小虎', province: '上海', city: '普陀区', address: '上海市普陀区金沙江路 1518 弄', zip: 200333 },
+         { date: '2016-05-01', name: '王小虎', province: '上海', city: '普陀区', address: '上海市普陀区金沙江路 1518 弄', zip: 200333 }
+        ]
       }
     }
   }
@@ -455,42 +266,13 @@ import {table,tableColumn} from '@vue/table'
 :::demo 固定列和表头可以同时使用，只需要将上述两个属性分别设置好即可。
 ```html
 <template>
-  <v-table
-    :data="tableData3"
-    border
-    style="width: 100%"
-    height="250">
-    <v-table-column
-      fixed
-      prop="date"
-      label="日期"
-      width="150">
-    </v-table-column>
-    <v-table-column
-      prop="name"
-      label="姓名"
-      width="120">
-    </v-table-column>
-    <v-table-column
-      prop="province"
-      label="省份"
-      width="120">
-    </v-table-column>
-    <v-table-column
-      prop="city"
-      label="市区"
-      width="120">
-    </v-table-column>
-    <v-table-column
-      prop="address"
-      label="地址"
-      width="300">
-    </v-table-column>
-    <v-table-column
-      prop="zip"
-      label="邮编"
-      width="120">
-    </v-table-column>
+  <v-table :data="tableData3" border style="width: 100%" height="250">
+    <v-table-column fixed prop="date" label="日期" width="150"></v-table-column>
+    <v-table-column prop="name" label="姓名" width="120"></v-table-column>
+    <v-table-column prop="province" label="省份" width="120"></v-table-column>
+    <v-table-column prop="city" label="市区" width="120"></v-table-column>
+    <v-table-column prop="address" label="地址" width="300"></v-table-column>
+    <v-table-column prop="zip" label="邮编" width="120"></v-table-column>
   </v-table>
 </template>
 
@@ -498,56 +280,15 @@ import {table,tableColumn} from '@vue/table'
   export default {
     data() {
       return {
-        tableData3: [{
-          date: '2016-05-03',
-          name: '王小虎',
-          province: '上海',
-          city: '普陀区',
-          address: '上海市普陀区金沙江路 1518 弄',
-          zip: 200333
-        }, {
-          date: '2016-05-02',
-          name: '王小虎',
-          province: '上海',
-          city: '普陀区',
-          address: '上海市普陀区金沙江路 1518 弄',
-          zip: 200333
-        }, {
-          date: '2016-05-04',
-          name: '王小虎',
-          province: '上海',
-          city: '普陀区',
-          address: '上海市普陀区金沙江路 1518 弄',
-          zip: 200333
-        }, {
-          date: '2016-05-01',
-          name: '王小虎',
-          province: '上海',
-          city: '普陀区',
-          address: '上海市普陀区金沙江路 1518 弄',
-          zip: 200333
-        }, {
-          date: '2016-05-08',
-          name: '王小虎',
-          province: '上海',
-          city: '普陀区',
-          address: '上海市普陀区金沙江路 1518 弄',
-          zip: 200333
-        }, {
-          date: '2016-05-06',
-          name: '王小虎',
-          province: '上海',
-          city: '普陀区',
-          address: '上海市普陀区金沙江路 1518 弄',
-          zip: 200333
-        }, {
-          date: '2016-05-07',
-          name: '王小虎',
-          province: '上海',
-          city: '普陀区',
-          address: '上海市普陀区金沙江路 1518 弄',
-          zip: 200333
-        }]
+        tableData: [
+         { date: '2016-05-03', name: '王小虎', province: '上海', city: '普陀区', address: '上海市普陀区金沙江路 1518 弄', zip: 200333 },
+         { date: '2016-05-02', name: '王小虎', province: '上海', city: '普陀区', address: '上海市普陀区金沙江路 1518 弄', zip: 200333 },
+         { date: '2016-05-04', name: '王小虎', province: '上海', city: '普陀区', address: '上海市普陀区金沙江路 1518 弄', zip: 200333 },
+         { date: '2016-05-01', name: '王小虎', province: '上海', city: '普陀区', address: '上海市普陀区金沙江路 1518 弄', zip: 200333 }
+         { date: '2016-05-08', name: '王小虎', province: '上海', city: '普陀区', address: '上海市普陀区金沙江路 1518 弄', zip: 200333 },
+         { date: '2016-05-06', name: '王小虎', province: '上海', city: '普陀区', address: '上海市普陀区金沙江路 1518 弄', zip: 200333 },
+         { date: '2016-05-07', name: '王小虎', province: '上海', city: '普陀区', address: '上海市普陀区金沙江路 1518 弄', zip: 200333 }
+        ]
       }
     }
   }
@@ -562,46 +303,14 @@ import {table,tableColumn} from '@vue/table'
 :::demo 通过设置`max-height`属性为 Table 指定最大高度。此时若表格所需的高度大于最大高度，则会显示一个滚动条。
 ```html
 <template>
-  <v-table
-    :data="tableData4"
-    border
-    style="width: 100%"
-    max-height="250">
-    <v-table-column
-      fixed
-      prop="date"
-      label="日期"
-      width="150">
-    </v-table-column>
-    <v-table-column
-      prop="name"
-      label="姓名"
-      width="120">
-    </v-table-column>
-    <v-table-column
-      prop="province"
-      label="省份"
-      width="120">
-    </v-table-column>
-    <v-table-column
-      prop="city"
-      label="市区"
-      width="120">
-    </v-table-column>
-    <v-table-column
-      prop="address"
-      label="地址"
-      width="300">
-    </v-table-column>
-    <v-table-column
-      prop="zip"
-      label="邮编"
-      width="120">
-    </v-table-column>
-    <v-table-column
-      fixed="right"
-      label="操作"
-      width="120">
+  <v-table :data="tableData4" border style="width: 100%" max-height="250">
+    <v-table-column fixed prop="date" label="日期" width="150"></v-table-column>
+    <v-table-column prop="name" label="姓名" width="120"></v-table-column>
+    <v-table-column prop="province" label="省份" width="120"></v-table-column>
+    <v-table-column prop="city" label="市区" width="120"></v-table-column>
+    <v-table-column prop="address" label="地址" width="300"></v-table-column>
+    <v-table-column prop="zip" label="邮编" width="120"></v-table-column>
+    <v-table-column fixed="right" label="操作" width="120">
       <template scope="scope">
         <v-button
           @click.native.prevent="deleteRow(scope.$index, tableData4)"
@@ -623,56 +332,15 @@ import {table,tableColumn} from '@vue/table'
     },
     data() {
       return {
-        tableData4: [{
-          date: '2016-05-03',
-          name: '王小虎',
-          province: '上海',
-          city: '普陀区',
-          address: '上海市普陀区金沙江路 1518 弄',
-          zip: 200333
-        }, {
-          date: '2016-05-02',
-          name: '王小虎',
-          province: '上海',
-          city: '普陀区',
-          address: '上海市普陀区金沙江路 1518 弄',
-          zip: 200333
-        }, {
-          date: '2016-05-04',
-          name: '王小虎',
-          province: '上海',
-          city: '普陀区',
-          address: '上海市普陀区金沙江路 1518 弄',
-          zip: 200333
-        }, {
-          date: '2016-05-01',
-          name: '王小虎',
-          province: '上海',
-          city: '普陀区',
-          address: '上海市普陀区金沙江路 1518 弄',
-          zip: 200333
-        }, {
-          date: '2016-05-08',
-          name: '王小虎',
-          province: '上海',
-          city: '普陀区',
-          address: '上海市普陀区金沙江路 1518 弄',
-          zip: 200333
-        }, {
-          date: '2016-05-06',
-          name: '王小虎',
-          province: '上海',
-          city: '普陀区',
-          address: '上海市普陀区金沙江路 1518 弄',
-          zip: 200333
-        }, {
-          date: '2016-05-07',
-          name: '王小虎',
-          province: '上海',
-          city: '普陀区',
-          address: '上海市普陀区金沙江路 1518 弄',
-          zip: 200333
-        }]
+        tableData4: [
+         { date: '2016-05-03', name: '王小虎', province: '上海', city: '普陀区', address: '上海市普陀区金沙江路 1518 弄', zip: 200333 },
+         { date: '2016-05-02', name: '王小虎', province: '上海', city: '普陀区', address: '上海市普陀区金沙江路 1518 弄', zip: 200333 },
+         { date: '2016-05-04', name: '王小虎', province: '上海', city: '普陀区', address: '上海市普陀区金沙江路 1518 弄', zip: 200333 },
+         { date: '2016-05-01', name: '王小虎', province: '上海', city: '普陀区', address: '上海市普陀区金沙江路 1518 弄', zip: 200333 }
+         { date: '2016-05-08', name: '王小虎', province: '上海', city: '普陀区', address: '上海市普陀区金沙江路 1518 弄', zip: 200333 },
+         { date: '2016-05-06', name: '王小虎', province: '上海', city: '普陀区', address: '上海市普陀区金沙江路 1518 弄', zip: 200333 },
+         { date: '2016-05-07', name: '王小虎', province: '上海', city: '普陀区', address: '上海市普陀区金沙江路 1518 弄', zip: 200333 }
+        ]
       }
     }
   }
@@ -687,42 +355,13 @@ import {table,tableColumn} from '@vue/table'
 :::demo 只需要在 v-table-column 里面嵌套 v-table-column，就可以实现多级表头。
 ```html
 <template>
-  <v-table
-    :data="tableData3"
-    border
-    style="width: 100%">
-    <v-table-column
-      prop="date"
-      label="日期"
-      width="150">
-    </v-table-column>
-    <v-table-column label="配送信息">
-      <v-table-column
-        prop="name"
-        label="姓名"
-        width="120">
-      </v-table-column>
-      <v-table-column label="地址">
-        <v-table-column
-          prop="province"
-          label="省份"
-          width="120">
-        </v-table-column>
-        <v-table-column
-          prop="city"
-          label="市区"
-          width="120">
-        </v-table-column>
-        <v-table-column
-          prop="address"
-          label="地址"
-          width="300">
-        </v-table-column>
-        <v-table-column
-          prop="zip"
-          label="邮编"
-          width="120">
-        </v-table-column>
+  <v-table :data="tableData3" border style="width: 100%">
+    <v-table-column prop="date" label="日期" width="150"></v-table-column>
+    <v-table-column label="配送信息"> <v-table-column prop="name" label="姓名" width="120"></v-table-column>
+      <v-table-column label="地址"> <v-table-column prop="province" label="省份" width="120"></v-table-column>
+        <v-table-column prop="city" label="市区" width="120"></v-table-column>
+        <v-table-column prop="address" label="地址" width="300"></v-table-column>
+        <v-table-column prop="zip" label="邮编" width="120"></v-table-column>
       </v-table-column>
     </v-table-column>
   </v-table>
@@ -732,56 +371,15 @@ import {table,tableColumn} from '@vue/table'
   export default {
     data() {
       return {
-        tableData3: [{
-          date: '2016-05-03',
-          name: '王小虎',
-          province: '上海',
-          city: '普陀区',
-          address: '上海市普陀区金沙江路 1518 弄',
-          zip: 200333
-        }, {
-          date: '2016-05-02',
-          name: '王小虎',
-          province: '上海',
-          city: '普陀区',
-          address: '上海市普陀区金沙江路 1518 弄',
-          zip: 200333
-        }, {
-          date: '2016-05-04',
-          name: '王小虎',
-          province: '上海',
-          city: '普陀区',
-          address: '上海市普陀区金沙江路 1518 弄',
-          zip: 200333
-        }, {
-          date: '2016-05-01',
-          name: '王小虎',
-          province: '上海',
-          city: '普陀区',
-          address: '上海市普陀区金沙江路 1518 弄',
-          zip: 200333
-        }, {
-          date: '2016-05-08',
-          name: '王小虎',
-          province: '上海',
-          city: '普陀区',
-          address: '上海市普陀区金沙江路 1518 弄',
-          zip: 200333
-        }, {
-          date: '2016-05-06',
-          name: '王小虎',
-          province: '上海',
-          city: '普陀区',
-          address: '上海市普陀区金沙江路 1518 弄',
-          zip: 200333
-        }, {
-          date: '2016-05-07',
-          name: '王小虎',
-          province: '上海',
-          city: '普陀区',
-          address: '上海市普陀区金沙江路 1518 弄',
-          zip: 200333
-        }]
+        tableData3: [
+         { date: '2016-05-03', name: '王小虎', province: '上海', city: '普陀区', address: '上海市普陀区金沙江路 1518 弄', zip: 200333 },
+         { date: '2016-05-02', name: '王小虎', province: '上海', city: '普陀区', address: '上海市普陀区金沙江路 1518 弄', zip: 200333 },
+         { date: '2016-05-04', name: '王小虎', province: '上海', city: '普陀区', address: '上海市普陀区金沙江路 1518 弄', zip: 200333 },
+         { date: '2016-05-01', name: '王小虎', province: '上海', city: '普陀区', address: '上海市普陀区金沙江路 1518 弄', zip: 200333 }
+         { date: '2016-05-08', name: '王小虎', province: '上海', city: '普陀区', address: '上海市普陀区金沙江路 1518 弄', zip: 200333 },
+         { date: '2016-05-06', name: '王小虎', province: '上海', city: '普陀区', address: '上海市普陀区金沙江路 1518 弄', zip: 200333 },
+         { date: '2016-05-07', name: '王小虎', province: '上海', city: '普陀区', address: '上海市普陀区金沙江路 1518 弄', zip: 200333 }
+        ]
       }
     }
   }
@@ -796,30 +394,11 @@ import {table,tableColumn} from '@vue/table'
 :::demo Table 组件提供了单选的支持，只需要配置`highlight-current-row`属性即可实现单选。之后由`current-change`事件来管理选中时触发的事件，它会传入`currentRow`，`oldCurrentRow`。如果需要显示索引，可以增加一列`v-table-column`，设置`type`属性为`index`即可显示从 1 开始的索引号。
 ```html
 <template>
-  <v-table
-    ref="singleTable"
-    :data="tableData"
-    highlight-current-row
-    @current-change="handleCurrentChange"
-    style="width: 100%">
-    <v-table-column
-      type="index"
-      width="50">
-    </v-table-column>
-    <v-table-column
-      property="date"
-      label="日期"
-      width="120">
-    </v-table-column>
-    <v-table-column
-      property="name"
-      label="姓名"
-      width="120">
-    </v-table-column>
-    <v-table-column
-      property="address"
-      label="地址">
-    </v-table-column>
+  <v-table ref="singleTable" :data="tableData" highlight-current-row @current-change="handleCurrentChange" style="width: 100%">
+    <v-table-column type="index" width="50"></v-table-column>
+    <v-table-column property="date" label="日期" width="120"></v-table-column>
+    <v-table-column property="name" label="姓名" width="120"></v-table-column>
+    <v-table-column property="address" label="地址"> </v-table-column>
   </v-table>
   <div style="margin-top: 20px">
     <v-button @click="setCurrent(tableData[1])">选中第二行</v-button>
@@ -831,23 +410,12 @@ import {table,tableColumn} from '@vue/table'
   export default {
     data() {
       return {
-        tableData: [{
-          date: '2016-05-02',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        }, {
-          date: '2016-05-04',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1517 弄'
-        }, {
-          date: '2016-05-01',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1519 弄'
-        }, {
-          date: '2016-05-03',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1516 弄'
-        }],
+        tableData: [
+          { date: '2016-05-02', name: '王小虎', address: '上海市普陀区金沙江路 1518 弄' },
+          { date: '2016-05-04', name: '王小虎', address: '上海市普陀区金沙江路 1517 弄' },
+          { date: '2016-05-01', name: '王小虎', address: '上海市普陀区金沙江路 1519 弄' },
+          { date: '2016-05-03', name: '王小虎', address: '上海市普陀区金沙江路 1516 弄' }
+        ],
         currentRow: null
       }
     },
@@ -872,32 +440,13 @@ import {table,tableColumn} from '@vue/table'
 :::demo 实现多选非常简单: 手动添加一个`v-table-column`，设`type`属性为`selection`即可；默认情况下若内容过多会折行显示，若需要单行显示可以使用`show-overflow-tooltip`属性，它接受一个`Boolean`，为`true`时多余的内容会在 hover 时以 tooltip 的形式显示出来。
 ```html
 <template>
-  <v-table
-    ref="multipleTable"
-    :data="tableData3"
-    border
-    tooltip-effect="dark"
-    style="width: 100%"
-    @selection-change="handleSelectionChange">
-    <v-table-column
-      type="selection"
-      width="55">
-    </v-table-column>
-    <v-table-column
-      label="日期"
-      width="120">
+  <v-table ref="multipleTable" :data="tableData3" border tooltip-effect="dark" style="width: 100%" @selection-change="handleSelectionChange">
+    <v-table-column type="selection" width="55"></v-table-column>
+    <v-table-column label="日期" width="120">
       <template scope="scope">{{ scope.row.date }}</template>
     </v-table-column>
-    <v-table-column
-      prop="name"
-      label="姓名"
-      width="120">
-    </v-table-column>
-    <v-table-column
-      prop="address"
-      label="地址"
-      show-overflow-tooltip>
-    </v-table-column>
+    <v-table-column prop="name" label="姓名" width="120"></v-table-column>
+    <v-table-column prop="address" label="地址" show-overflow-tooltip></v-table-column>
   </v-table>
   <div style="margin-top: 20px">
     <v-button @click="toggleSelection([tableData3[1], tableData3[2]])">切换第二、第三行的选中状态</v-button>
@@ -909,35 +458,15 @@ import {table,tableColumn} from '@vue/table'
   export default {
     data() {
       return {
-        tableData3: [{
-          date: '2016-05-03',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        }, {
-          date: '2016-05-02',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        }, {
-          date: '2016-05-04',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        }, {
-          date: '2016-05-01',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        }, {
-          date: '2016-05-08',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        }, {
-          date: '2016-05-06',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        }, {
-          date: '2016-05-07',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        }],
+        tableData3: [
+          { date: '2016-05-03', name: '王小虎', address: '上海市普陀区金沙江路 1518 弄' },
+          { date: '2016-05-02', name: '王小虎', address: '上海市普陀区金沙江路 1518 弄' },
+          { date: '2016-05-04', name: '王小虎', address: '上海市普陀区金沙江路 1518 弄' },
+          { date: '2016-05-01', name: '王小虎', address: '上海市普陀区金沙江路 1518 弄' },
+          { date: '2016-05-08', name: '王小虎', address: '上海市普陀区金沙江路 1518 弄' },
+          { date: '2016-05-06', name: '王小虎', address: '上海市普陀区金沙江路 1518 弄' },
+          { date: '2016-05-07', name: '王小虎', address: '上海市普陀区金沙江路 1518 弄' }
+        ],
         multipleSelection: []
       }
     },
@@ -968,29 +497,10 @@ import {table,tableColumn} from '@vue/table'
 :::demo 在列中设置`sortable`属性即可实现以该列为基准的排序，接受一个`Boolean`，默认为`false`。可以通过 Table 的`default-sort`属性设置默认的排序列和排序顺序。可以使用`sort-method`使用自定义的排序规则。如果需要后端排序，需将`sortable`设置为`custom`，同时在 Table 上监听`sort-change`事件，在事件回调中可以获取当前排序的字段名和排序顺序，从而向接口请求排序后的表格数据。在本例中，我们还使用了`formatter`属性，它用于格式化指定列的值，接受一个`Function`，会传入两个参数：`row`和`column`，可以根据自己的需求进行处理。
 ```html
 <template>
-  <v-table
-    :data="tableData"
-    border
-    style="width: 100%"
-    :default-sort = "{prop: 'date', order: 'descending'}"
-    >
-    <v-table-column
-      prop="date"
-      label="日期"
-      sortable
-      width="180">
-    </v-table-column>
-    <v-table-column
-      prop="name"
-      label="姓名"
-      sortable
-      width="180">
-    </v-table-column>
-    <v-table-column
-      prop="address"
-      label="地址"
-      :formatter="formatter">
-    </v-table-column>
+  <v-table :data="tableData" border style="width: 100%" :default-sort = "{prop: 'date', order: 'descending'}">
+    <v-table-column prop="date" label="日期" sortable width="180"></v-table-column>
+    <v-table-column prop="name" label="姓名" sortable width="180"></v-table-column>
+    <v-table-column prop="address" label="地址" :formatter="formatter"></v-table-column>
   </v-table>
 </template>
 
@@ -998,23 +508,12 @@ import {table,tableColumn} from '@vue/table'
   export default {
     data() {
       return {
-        tableData: [{
-          date: '2016-05-02',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        }, {
-          date: '2016-05-04',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1517 弄'
-        }, {
-          date: '2016-05-01',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1519 弄'
-        }, {
-          date: '2016-05-03',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1516 弄'
-        }]
+        tableData: [
+         { date: '2016-05-02', name: '王小虎', address: '上海市普陀区金沙江路 1518 弄' },
+         { date: '2016-05-04', name: '王小虎', address: '上海市普陀区金沙江路 1517 弄' },
+         { date: '2016-05-01', name: '王小虎', address: '上海市普陀区金沙江路 1519 弄' },
+         { date: '2016-05-03', name: '王小虎', address: '上海市普陀区金沙江路 1516 弄' }
+        ]
       }
     },
     methods: {
@@ -1034,26 +533,10 @@ import {table,tableColumn} from '@vue/table'
 :::demo 在列中设置`filters` `filter-method`属性即可开启该列的筛选，filters 是一个数组，`filter-method`是一个方法，它用于决定某些数据是否显示，会传入两个参数：`value`和`row`。
 ```html
 <template>
-  <v-table
-    :data="tableData"
-    border
-    style="width: 100%">
-    <v-table-column
-      prop="date"
-      label="日期"
-      sortable
-      width="180">
-    </v-table-column>
-    <v-table-column
-      prop="name"
-      label="姓名"
-      width="180">
-    </v-table-column>
-    <v-table-column
-      prop="address"
-      label="地址"
-      :formatter="formatter">
-    </v-table-column>
+  <v-table :data="tableData" border style="width: 100%">
+    <v-table-column prop="date" label="日期" sortable width="180"></v-table-column>
+    <v-table-column prop="name" label="姓名" width="180"></v-table-column>
+    <v-table-column prop="address" label="地址" :formatter="formatter"></v-table-column>
     <v-table-column
       prop="tag"
       label="标签"
@@ -1062,9 +545,7 @@ import {table,tableColumn} from '@vue/table'
       :filter-method="filterTag"
       filter-placement="bottom-end">
       <template scope="scope">
-        <v-tag
-          :type="scope.row.tag === '家' ? 'primary' : 'success'"
-          close-transition>{{scope.row.tag}}</v-tag>
+        <v-tag :type="scope.row.tag === '家' ? 'primary' : 'success'" close-transition>{{scope.row.tag}}</v-tag>
       </template>
     </v-table-column>
   </v-table>
@@ -1074,27 +555,12 @@ import {table,tableColumn} from '@vue/table'
   export default {
     data() {
       return {
-        tableData: [{
-          date: '2016-05-02',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄',
-          tag: '家'
-        }, {
-          date: '2016-05-04',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1517 弄',
-          tag: '公司'
-        }, {
-          date: '2016-05-01',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1519 弄',
-          tag: '家'
-        }, {
-          date: '2016-05-03',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1516 弄',
-          tag: '公司'
-        }]
+        tableData: [
+         { date: '2016-05-02', name: '王小虎', address: '上海市普陀区金沙江路 1518 弄', tag: '家' },
+         { date: '2016-05-04', name: '王小虎', address: '上海市普陀区金沙江路 1517 弄', tag: '公司' },
+         { date: '2016-05-01', name: '王小虎', address: '上海市普陀区金沙江路 1519 弄', tag: '家' },
+         { date: '2016-05-03', name: '王小虎', address: '上海市普陀区金沙江路 1516 弄', tag: '公司' }
+        ]
       }
     },
     methods: {
@@ -1116,21 +582,14 @@ import {table,tableColumn} from '@vue/table'
 :::demo 通过 `Scoped slot` 可以获取到 row, column, $index 和 store（table 内部的状态管理）的数据，用法参考 demo。(`1.1` 后支持通过 [Scoped slot](https://vuejs.org/v2/guide/components.html#Scoped-Slots) 自定义模板。之前的 `inline-template` 同样适用，但不推荐。)
 ```html
 <template>
-  <v-table
-    :data="tableData"
-    border
-    style="width: 100%">
-    <v-table-column
-      label="日期"
-      width="180">
+  <v-table :data="tableData" border style="width: 100%">
+    <v-table-column label="日期" width="180">
       <template scope="scope">
         <v-icon name="time"></v-icon>
         <span style="margin-left: 10px">{{ scope.row.date }}</span>
       </template>
     </v-table-column>
-    <v-table-column
-      label="姓名"
-      width="180">
+    <v-table-column label="姓名" width="180">
       <template scope="scope">
         <v-popover trigger="hover" placement="top">
           <p>姓名: {{ scope.row.name }}</p>
@@ -1143,13 +602,8 @@ import {table,tableColumn} from '@vue/table'
     </v-table-column>
     <v-table-column label="操作">
       <template scope="scope">
-        <v-button
-          size="small"
-          @click="handleEdit(scope.$index, scope.row)">编辑</v-button>
-        <v-button
-          size="small"
-          type="danger"
-          @click="handleDelete(scope.$index, scope.row)">删除</v-button>
+        <v-button size="small" @click="handleEdit(scope.$index, scope.row)">编辑</v-button>
+        <v-button size="small" type="danger" @click="handleDelete(scope.$index, scope.row)">删除</v-button>
       </template>
     </v-table-column>
   </v-table>
@@ -1159,23 +613,12 @@ import {table,tableColumn} from '@vue/table'
   export default {
     data() {
       return {
-        tableData: [{
-          date: '2016-05-02',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        }, {
-          date: '2016-05-04',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1517 弄'
-        }, {
-          date: '2016-05-01',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1519 弄'
-        }, {
-          date: '2016-05-03',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1516 弄'
-        }]
+        tableData: [
+         { date: '2016-05-02', name: '王小虎', address: '上海市普陀区金沙江路 1518 弄' },
+         { date: '2016-05-04', name: '王小虎', address: '上海市普陀区金沙江路 1517 弄' },
+         { date: '2016-05-01', name: '王小虎', address: '上海市普陀区金沙江路 1519 弄' },
+         { date: '2016-05-03', name: '王小虎', address: '上海市普陀区金沙江路 1516 弄' }
+        ]
       }
     },
     methods: {
@@ -1197,103 +640,42 @@ import {table,tableColumn} from '@vue/table'
 :::demo 通过设置 type="expand" 和 `Scoped slot` 可以开启展开行功能，`v-table-column` 的模板会被渲染成为展开行的内容，展开行可访问的属性与使用自定义列模板时的 `Scoped slot` 相同。
 ```html
 <template>
-  <v-table
-    :data="tableData5"
-    style="width: 100%">
+  <v-table :data="tableData5" style="width: 100%">
     <v-table-column type="expand">
       <template scope="props">
         <v-form label-position="left" inline class="demo-table-expand">
-          <v-form-item label="商品名称">
-            <span>{{ props.row.name }}</span>
-          </v-form-item>
-          <v-form-item label="所属店铺">
-            <span>{{ props.row.shop }}</span>
-          </v-form-item>
-          <v-form-item label="商品 ID">
-            <span>{{ props.row.id }}</span>
-          </v-form-item>
-          <v-form-item label="店铺 ID">
-            <span>{{ props.row.shopId }}</span>
-          </v-form-item>
-          <v-form-item label="商品分类">
-            <span>{{ props.row.category }}</span>
-          </v-form-item>
-          <v-form-item label="店铺地址">
-            <span>{{ props.row.address }}</span>
-          </v-form-item>
-          <v-form-item label="商品描述">
-            <span>{{ props.row.desc }}</span>
-          </v-form-item>
+          <v-form-item label="商品名称"><span>{{ props.row.name }}</span></v-form-item>
+          <v-form-item label="所属店铺"><span>{{ props.row.shop }}</span></v-form-item>
+          <v-form-item label="商品 ID"><span>{{ props.row.id }}</span></v-form-item>
+          <v-form-item label="店铺 ID"><span>{{ props.row.shopId }}</span></v-form-item>
+          <v-form-item label="商品分类"><span>{{ props.row.category }}</span></v-form-item>
+          <v-form-item label="店铺地址"><span>{{ props.row.address }}</span></v-form-item>
+          <v-form-item label="商品描述"><span>{{ props.row.desc }}</span></v-form-item>
         </v-form>
       </template>
     </v-table-column>
-    <v-table-column
-      label="商品 ID"
-      prop="id">
-    </v-table-column>
-    <v-table-column
-      label="商品名称"
-      prop="name">
-    </v-table-column>
-    <v-table-column
-      label="描述"
-      prop="desc">
-    </v-table-column>
+    <v-table-column label="商品 ID" prop="id"></v-table-column>
+    <v-table-column label="商品名称" prop="name"></v-table-column>
+    <v-table-column label="描述" prop="desc"></v-table-column>
   </v-table>
 </template>
 
 <style>
-  .demo-table-expand {
-    font-size: 0;
-  }
-  .demo-table-expand label {
-    width: 90px;
-    color: #99a9bf;
-  }
-  .demo-table-expand .v-form-item {
-    margin-right: 0;
-    margin-bottom: 0;
-    width: 50%;
-  }
+  .demo-table-expand { font-size: 0; }
+  .demo-table-expand label { width: 90px; color: #99a9bf; }
+  .demo-table-expand .v-form-item { margin-right: 0; margin-bottom: 0; width: 50%; }
 </style>
 
 <script>
   export default {
     data() {
       return {
-        tableData5: [{
-          id: '12987122',
-          name: '好滋好味鸡蛋仔',
-          category: '江浙小吃、小吃零食',
-          desc: '荷兰优质淡奶，奶香浓而不腻',
-          address: '上海市普陀区真北路',
-          shop: '王小虎夫妻店',
-          shopId: '10333'
-        }, {
-          id: '12987123',
-          name: '好滋好味鸡蛋仔',
-          category: '江浙小吃、小吃零食',
-          desc: '荷兰优质淡奶，奶香浓而不腻',
-          address: '上海市普陀区真北路',
-          shop: '王小虎夫妻店',
-          shopId: '10333'
-        }, {
-          id: '12987125',
-          name: '好滋好味鸡蛋仔',
-          category: '江浙小吃、小吃零食',
-          desc: '荷兰优质淡奶，奶香浓而不腻',
-          address: '上海市普陀区真北路',
-          shop: '王小虎夫妻店',
-          shopId: '10333'
-        }, {
-          id: '12987126',
-          name: '好滋好味鸡蛋仔',
-          category: '江浙小吃、小吃零食',
-          desc: '荷兰优质淡奶，奶香浓而不腻',
-          address: '上海市普陀区真北路',
-          shop: '王小虎夫妻店',
-          shopId: '10333'
-        }]
+        tableData5: [
+          { id: '12987122', name: '好滋好味鸡蛋仔', category: '江浙小吃、小吃零食', desc: '荷兰优质淡奶，奶香浓而不腻', address: '上海市普陀区真北路', shop: '王小虎夫妻店', shopId: '10333' },
+          { id: '12987123', name: '好滋好味鸡蛋仔', category: '江浙小吃、小吃零食', desc: '荷兰优质淡奶，奶香浓而不腻', address: '上海市普陀区真北路', shop: '王小虎夫妻店', shopId: '10333' },
+          { id: '12987125', name: '好滋好味鸡蛋仔', category: '江浙小吃、小吃零食', desc: '荷兰优质淡奶，奶香浓而不腻', address: '上海市普陀区真北路', shop: '王小虎夫妻店', shopId: '10333' },
+          { id: '12987126', name: '好滋好味鸡蛋仔', category: '江浙小吃、小吃零食', desc: '荷兰优质淡奶，奶香浓而不腻', address: '上海市普陀区真北路', shop: '王小虎夫妻店', shopId: '10333' }
+        ]
       }
     }
   }
@@ -1307,65 +689,20 @@ import {table,tableColumn} from '@vue/table'
 :::demo 将`show-summary`设置为`true`就会在表格尾部展示合计行。默认情况下，对于合计行，第一列不进行数据求合操作，而是显示「合计」二字（可通过`sum-text`配置），其余列会将本列所有数值进行求合操作，并显示出来。当然，你也可以定义自己的合计逻辑。使用`summary-method`并传入一个方法，返回一个数组，这个数组中的各项就会显示在合计行的各列中，具体可以参考本例中的第二个表格。
 ```html
 <template>
-  <v-table
-    :data="tableData6"
-    border
-    show-summary
-    style="width: 100%">
-    <v-table-column
-      prop="id"
-      label="ID"
-      width="180">
-    </v-table-column>
-    <v-table-column
-      prop="name"
-      label="姓名">
-    </v-table-column>
-    <v-table-column
-      prop="amount1"
-      sortable
-      label="数值 1">
-    </v-table-column>
-    <v-table-column
-      prop="amount2"
-      sortable
-      label="数值 2">
-    </v-table-column>
-    <v-table-column
-      prop="amount3"
-      sortable
-      label="数值 3">
-    </v-table-column>
+  <v-table :data="tableData6" border show-summary style="width: 100%">
+    <v-table-column prop="id" label="ID" width="180"></v-table-column>
+    <v-table-column prop="name" label="姓名"></v-table-column>
+    <v-table-column prop="amount1" sortable label="数值 1"></v-table-column>
+    <v-table-column prop="amount2" sortable label="数值 2"></v-table-column>
+    <v-table-column prop="amount3" sortable label="数值 3"></v-table-column>
   </v-table>
 
-  <v-table
-    :data="tableData6"
-    border
-    height="200"
-    :summary-method="getSummaries"
-    show-summary
-    style="width: 100%; margin-top: 20px">
-    <v-table-column
-      prop="id"
-      label="ID"
-      width="180">
-    </v-table-column>
-    <v-table-column
-      prop="name"
-      label="姓名">
-    </v-table-column>
-    <v-table-column
-      prop="amount1"
-      label="数值 1（元）">
-    </v-table-column>
-    <v-table-column
-      prop="amount2"
-      label="数值 2（元）">
-    </v-table-column>
-    <v-table-column
-      prop="amount3"
-      label="数值 3（元）">
-    </v-table-column>
+  <v-table :data="tableData6" border height="200" :summary-method="getSummaries" show-summary style="width: 100%; margin-top: 20px">
+    <v-table-column prop="id" label="ID" width="180"></v-table-column>
+    <v-table-column prop="name" label="姓名"></v-table-column>
+    <v-table-column prop="amount1" label="数值 1（元）"></v-table-column>
+    <v-table-column prop="amount2" label="数值 2（元）"></v-table-column>
+    <v-table-column prop="amount3" label="数值 3（元）"></v-table-column>
   </v-table>
 </template>
 
@@ -1373,37 +710,13 @@ import {table,tableColumn} from '@vue/table'
   export default {
     data() {
       return {
-        tableData6: [{
-          id: '12987122',
-          name: '王小虎',
-          amount1: '234',
-          amount2: '3.2',
-          amount3: 10
-        }, {
-          id: '12987123',
-          name: '王小虎',
-          amount1: '165',
-          amount2: '4.43',
-          amount3: 12
-        }, {
-          id: '12987124',
-          name: '王小虎',
-          amount1: '324',
-          amount2: '1.9',
-          amount3: 9
-        }, {
-          id: '12987125',
-          name: '王小虎',
-          amount1: '621',
-          amount2: '2.2',
-          amount3: 17
-        }, {
-          id: '12987126',
-          name: '王小虎',
-          amount1: '539',
-          amount2: '4.1',
-          amount3: 15
-        }]
+        tableData6: [
+          { id: '12987122', name: '王小虎', amount1: '234', amount2: '3.2', amount3: 10 },
+          { id: '12987123', name: '王小虎', amount1: '165', amount2: '4.43', amount3: 12 },
+          { id: '12987124', name: '王小虎', amount1: '324', amount2: '1.9', amount3: 9 },
+          { id: '12987125', name: '王小虎', amount1: '621', amount2: '2.2', amount3: 17 },
+          { id: '12987126', name: '王小虎', amount1: '539', amount2: '4.1', amount3: 15 }
+        ]
       };
     },
     methods: {

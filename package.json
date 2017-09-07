@@ -1,8 +1,8 @@
 {
   "name": "@vue/table",
-  "version": "1.0.5",
+  "version": "1.0.0",
   "description": "a vue table component",
-  "main": "src/dist/v-table.js",
+  "main": "dist/v-table.bundle.js",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -13,7 +13,8 @@
     "async-validator": "^1.8.1",
     "deepmerge": "^1.5.1",
     "lodash": "^4.17.4",
-    "throttle-debounce": "^1.0.1"
+    "throttle-debounce": "^1.0.1",
+    "vue": "2.4.2"
   },
   "devDependencies": {
     "@fedor/progress-webpack-plugin": "^1.0.0",
@@ -48,7 +49,7 @@
     "vue": "^2.4.2"
   },
   "scripts": {
-    "dev": "npm test && cross-env NODE_ENV=development webpack-dev-server --config ./.build/webpack.config.dev.js --hot",
+    "dev": "npm test && cross-env NODE_ENV=development webpack-dev-server --config ./.build/webpack.config.dev.js",
     "build": "npm test && cross-env NODE_ENV=production webpack --config ./.build/webpack.config.prod.js",
     "lint": "standard \"**/*.{js,vue}\"",
     "lint:fix": "standard \"**/*.{js,vue}\" --fix",
@@ -56,7 +57,16 @@
     "publish": "npm run build",
     "start": "npm run dev"
   },
-  "standard":{
-    "ignore":["src/packages","src/src"]
-  }
+  "standard": {
+    "ignore": [
+      "src/packages",
+      "src/src"
+    ]
+  },
+  "maintainers": [
+    {
+      "name": "public",
+      "email": "rayjump@163.com"
+    }
+  ]
 }

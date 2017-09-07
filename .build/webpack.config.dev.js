@@ -59,5 +59,9 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: "demo/index.html"
     })
-  ]
+  ],
+  externals: {
+    lodash: '_',
+    vue: 'Vue'
+  }
 };
