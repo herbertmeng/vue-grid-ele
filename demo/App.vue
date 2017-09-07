@@ -184,7 +184,7 @@
         three: 75,
         four: 75
       }
-      const data = _.shuffle(Array.from(Array(100), (v,i) => Object.assign({}, item, {24:i,male:i+1})));
+      const data = _.shuffle(Array.from(Array(10), (v,i) => Object.assign({}, item, {24:i,male:i+1})));
       const saveData = _.cloneDeep(data)
       return {
         data,

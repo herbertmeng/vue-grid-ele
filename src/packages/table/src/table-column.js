@@ -108,7 +108,7 @@ const DEFAULT_RENDER_CELL = function(h, { row, column }) {
 
 export default {
   name: 'VTableColumn',
-
+  inheritAttrs: false,
   props: {
     type: {
       type: String,
