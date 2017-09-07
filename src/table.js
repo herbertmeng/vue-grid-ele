@@ -28,7 +28,8 @@ export default {
   name: 'v-grid',
   render () {
     const tableProps = {
-      attrs: _.omit(this.$attrs, _.keys(this.$props))
+      attrs: _.omit(this.$attrs, _.keys(this.$props)),
+      on: this.$listeners
     }
     return (<v-table {...tableProps}>
       {createHead.call(this, this.columns)}

@@ -2,11 +2,12 @@
   <div style="max-width: 800px">
     <h1>Hello World</h1>
     <p>This is demo page for fss module.</p>
-    <v-table :data="data" height="500" border :columns="columns"/>
+    <v-table :data="data" height="500" border :columns="columns" @sort-change="handleSort"/>
   </div>
 </template>
 
 <script type="text/jsx">
+  import _ from 'lodash'
   import VTable from '../src'
   const renderToolTip = function (h, {column, $index}) {
     return (<span>{column.label}?</span>)
@@ -66,7 +67,9 @@
             {
               label: '24岁以下',
               prop: '24',
-              render: renderPercent
+              render: renderPercent,
+              sortable: 'custom',
+              width: 120,
             },
             {
               label: '25~30岁',
@@ -181,10 +184,31 @@
         three: 75,
         four: 75
       }
-      const data = Array.from(Array(100), () => Object.assign({}, item));
+      const data = _.shuffle(Array.from(Array(100), (v,i) => Object.assign({}, item, {24:i,male:i+1})));
+      const saveData = _.cloneDeep(data)
       return {
         data,
         columns,
+        saveData
+      }
+    },
+    methods: {
+      handleSort({order,prop}){
+        const fixedData = this.data.slice(0,3)
+        let sortData = this.data.slice(3)
+        if(order !== null){
+          if(order === 'ascending'){
+            sortData = sortData.sort((a,b)=>a[prop]-b[prop])
+          }else if(order === 'descending'){
+            sortData = sortData.sort((a,b)=>b[prop]-a[prop])
+          }
+          this.data = fixedData.concat(sortData)
+        } else {
+          this.restoreData()
+        }
+      },
+      restoreData(){
+        this.data = this.saveData
       }
     },
     components: {
