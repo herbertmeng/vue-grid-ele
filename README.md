@@ -23,11 +23,6 @@ import VTable from '@vue/table/dist/v-table.bundle.js'
 import {table,tableColumn} from '@vue/table'
 ```
 
-
-## description
-扩展element-table
-<http://element.eleme.io/#/zh-CN/component/table>
-
 ## props
 ### columns
 #### render:function
