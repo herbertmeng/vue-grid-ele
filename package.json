@@ -8,7 +8,7 @@
     "type": "git",
     "url": "http://git.analysys.cn/fss-modules"
   },
-  "keywords": [],
+  "author": "ljwrer <rayjump@163.com>",
   "dependencies": {
     "async-validator": "^1.8.1",
     "deepmerge": "^1.5.1",
@@ -66,7 +66,7 @@
   "maintainers": [
     {
       "name": "public",
-      "email": "rayjump@163.com"
+      "email": "allex.wxn@gmail.com"
     }
   ]
 }
