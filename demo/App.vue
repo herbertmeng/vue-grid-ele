@@ -1,8 +1,10 @@
 <template>
-  <div style="max-width: 800px">
+  <div style="max-width: 1200px">
     <h1>Hello World</h1>
     <p>This is demo page for fss module.</p>
-    <v-table :data="data" height="500" border :columns="columns" @sort-change="handleSort"/>
+    <div class="m-table">
+      <v-table :data="data" height="500" border :columns="columns" @sort-change="handleSort" stripe/>
+    </div>
   </div>
 </template>
 
@@ -10,14 +12,14 @@
   import _ from 'lodash'
   import VTable from '../src'
   const renderToolTip = function (h, {column, $index}) {
-    return (<span>{column.label}?</span>)
+    return (<span>{column.label}</span>)
   }
   const renderPercent = function (h,{column, row, $index}) {
     return row[column.property] ? row[column.property] + '%' : 0
   }
   export default {
     data: function () {
-      const columns = [
+      let columns = [
         {
           label: '对比',
           fixed: true,
@@ -44,7 +46,8 @@
             return (<button onClick={function () {
               alert(`已收藏第${$index+1}列`)
             }}>点击收藏</button>)
-          }
+          },
+          className:'td-border'
         },
         {
           label: '性别分布',
@@ -52,12 +55,15 @@
             {
               label: '男',
               prop: 'male',
-              render: renderPercent
+              render: renderPercent,
+              width:100
             },
             {
               label: '女',
               prop: 'female',
-              render: renderPercent
+              render: renderPercent,
+              width:100,
+              className:'td-border'
             }
           ]
         },
@@ -74,7 +80,8 @@
             {
               label: '25~30岁',
               prop: '25',
-              render: renderPercent
+              render: renderPercent,
+              sortable:true
             },
             {
               label: '31~35岁',
@@ -89,7 +96,8 @@
             {
               label: '41岁及以上',
               prop: '41',
-              render: renderPercent
+              render: renderPercent,
+              className:'td-border'
             }
           ]
         },
@@ -124,7 +132,8 @@
               label: '低消费者',
               'render-header': renderToolTip,
               prop: 'low',
-              render: renderPercent
+              render: renderPercent,
+              className:'td-border'
             }
           ]
         },
@@ -159,7 +168,7 @@
               label: '非线级城市及其他',
               'render-header': renderToolTip,
               prop: 'four',
-              render: renderPercent
+              render: renderPercent,
             }
           ]
         }
@@ -186,6 +195,19 @@
       }
       const data = _.shuffle(Array.from(Array(10), (v,i) => Object.assign({}, item, {24:i,male:i+1})));
       const saveData = _.cloneDeep(data)
+      columns.forEach(col=>{
+        if(col.label&&!col.width){
+          col.width = 40+col.label.length*20
+        }
+        if(col.children){
+          col.className = col.className + ' border'
+          col.children.forEach((subCol)=>{
+            if(subCol.label&&!subCol.width){
+              subCol.width = 40+subCol.label.length*20
+            }
+          })
+        }
+      })
       return {
         data,
         columns,
@@ -193,7 +215,7 @@
       }
     },
     methods: {
-      handleSort({order,prop}){
+      handleSort({order,prop,column}){
         const fixedData = this.data.slice(0,3)
         let sortData = this.data.slice(3)
         if(order !== null){
@@ -216,4 +238,6 @@
     }
   }
 </script>
-
+<style lang="scss">
+  @import "./style.scss";
+</style>
