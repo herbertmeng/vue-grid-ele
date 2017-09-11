@@ -57,7 +57,7 @@ export default {
                 {
                   this._l(this.columns, (column, cellIndex) =>
                     <td
-                      class={ [column.id, column.align, column.className || '', columnsHidden[cellIndex] ? 'is-hidden' : '' ] }
+                      class={ [column.order ,column.id, column.align, column.className || '', columnsHidden[cellIndex] ? 'is-hidden' : '' ] }
                       on-mouseenter={ ($event) => this.handleCellMouseEnter($event, row) }
                       on-mouseleave={ this.handleCellMouseLeave }>
                       {
