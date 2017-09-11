@@ -42,10 +42,12 @@ export const orderBy = function(array, sortKey, reverse, sortMethod) {
 
 export const getColumnById = function(table, columnId) {
   let column = null;
-  table.columns.forEach(function(item) {
+  table.columns.some(function(item) {
     if (item.id === columnId) {
       column = item;
+      return true
     }
+    return false
   });
   return column;
 };
