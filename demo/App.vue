@@ -195,19 +195,18 @@
       }
       const data = _.shuffle(Array.from(Array(10), (v,i) => Object.assign({}, item, {24:i,male:i+1})));
       const saveData = _.cloneDeep(data)
-      columns.forEach(col=>{
+      const resetCol = function (col) {
+        col.align = 'center'
+        col.resizable = false
         if(col.label&&!col.width){
           col.width = 40+col.label.length*20
         }
         if(col.children){
           col.className = col.className + ' border'
-          col.children.forEach((subCol)=>{
-            if(subCol.label&&!subCol.width){
-              subCol.width = 40+subCol.label.length*20
-            }
-          })
+          col.children.forEach(resetCol)
         }
-      })
+      }
+      columns.forEach(resetCol)
       return {
         data,
         columns,
@@ -215,7 +214,7 @@
       }
     },
     methods: {
-      handleSort({order,prop,column}){
+      handleSort({order,prop}){
         const fixedData = this.data.slice(0,3)
         let sortData = this.data.slice(3)
         if(order !== null){
