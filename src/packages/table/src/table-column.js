@@ -1,6 +1,6 @@
 import VCheckbox from '../../checkbox';
 import VTag from '../../tag';
-import objectAssign from '../../../src/utils/merge';
+import {merge as objectAssign} from '@vue/utils';
 import { getValueByPath } from '../../../src/utils/util';
 
 let columnIdSeed = 1;

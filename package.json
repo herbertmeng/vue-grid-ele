@@ -10,6 +10,7 @@
   },
   "author": "ljwrer <rayjump@163.com>",
   "dependencies": {
+    "@vue/utils": "^1.0.0",
     "async-validator": "^1.8.1",
     "deepmerge": "^1.5.1",
     "lodash": "^4.17.4",

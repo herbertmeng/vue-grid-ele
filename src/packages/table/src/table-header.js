@@ -1,4 +1,4 @@
-import { hasClass, addClass, removeClass } from '../../../src/utils/dom';
+import { hasClass, addClass, removeClass } from '@vue/utils';
 import VCheckbox from '../../checkbox';
 import VTag from '../../tag';
 import Vue from 'vue';
