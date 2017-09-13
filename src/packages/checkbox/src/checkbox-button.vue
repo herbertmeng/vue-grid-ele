@@ -41,12 +41,12 @@
   </label>
 </template>
 <script>
-  import Emitter from '../../../src/mixins/emitter';
+  import {mixins} from '@vue/utils'
 
   export default {
     name: 'VCheckboxButton',
 
-    mixins: [Emitter],
+    mixins: [mixins],
 
     data() {
       return {

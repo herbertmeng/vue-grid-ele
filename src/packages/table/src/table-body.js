@@ -1,5 +1,5 @@
 import { getCell, getColumnByCell, getRowIdentity } from './util';
-import { hasClass, addClass, removeClass } from '../../../src/utils/dom';
+import { hasClass, addClass, removeClass } from '@vue/utils';
 import VCheckbox from '../../checkbox';
 import VTooltip from '../../tooltip';
 import debounce from 'throttle-debounce/debounce';

@@ -1,13 +1,9 @@
 <script>
-  import Emitter from '../../../src/mixins/emitter';
-
+  import {mixins} from '@vue/utils'
   export default {
     name: 'VCheckboxGroup',
-
     componentName: 'VCheckboxGroup',
-
-    mixins: [Emitter],
-
+    mixins: [mixins],
     props: {
       value: {},
       min: Number,
@@ -16,7 +12,6 @@
       fill: String,
       textColor: String
     },
-
     watch: {
       value(value) {
         this.dispatch('VFormItem', 'el.form.change', [value]);
