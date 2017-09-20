@@ -1,6 +1,6 @@
 {
   "name": "@vue/table",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "a vue table component",
   "main": "dist/v-table.bundle.js",
   "license": "MIT",
@@ -10,12 +10,11 @@
   },
   "author": "ljwrer <rayjump@163.com>",
   "dependencies": {
-    "@vue/utils": "^1.0.0",
     "async-validator": "^1.8.1",
     "deepmerge": "^1.5.1",
     "lodash": "^4.17.4",
     "throttle-debounce": "^1.0.1",
-    "vue": "2.4.2"
+    "vue": "^2.4.4"
   },
   "devDependencies": {
     "@fedor/progress-webpack-plugin": "^1.0.0",
@@ -43,11 +42,12 @@
     "vue-loader": "^13.0.4",
     "vue-template-compiler": "^2.4.2",
     "webpack": "^3.5.4",
-    "webpack-dev-server": "^2.7.1",
+    "webpack-dev-server": "^2.8.2",
     "webpack-merge": "^4.1.0"
   },
   "peerDependencies": {
-    "vue": "^2.4.2"
+    "@vue/utils": "^1.0.0",
+    "vue": "^2.4.4"
   },
   "scripts": {
     "dev": "npm test && cross-env NODE_ENV=development webpack-dev-server --config ./.build/webpack.config.dev.js",
@@ -57,6 +57,11 @@
     "test": "npm run lint",
     "publish": "npm run build",
     "start": "npm run dev"
+  },
+  "fss": {
+    "distname": "v-table",
+    "library": "vTable",
+    "cdnPrefix": "//s2.analysys.cn/-/"
   },
   "standard": {
     "ignore": [
