@@ -1,67 +1,54 @@
-"use strict";
+// webpack.config.js for development
 
-const path = require("path");
-const webpack = require("webpack");
-const getEnv = require("env-parse").getEnv;
+'use strict'
 
-const resolve = function(dir) {
-  return path.resolve(__dirname, "..", dir);
-};
+const path = require('path')
+const webpack = require('webpack')
+const getEnv = require('env-parse').getEnv
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const { webpackBase } = require('./config')
 
-const HtmlWebpackPlugin = require("html-webpack-plugin");
+const resolve = function (dir) {
+  return path.resolve(__dirname, '..', dir)
+}
 
-module.exports = {
-  entry: resolve("demo/main.js"),
+module.exports = webpackBase.extend({
+  entry: {
+    'demo.bundle': resolve('demo/main.js')
+  },
   output: {
-    path: resolve("demo"),
-    filename: "main.js"
+    path: resolve('dist'),
+    filename: '[name].js',
+    libraryTarget: 'umd'
   },
   module: {
     rules: [
-      { test: /\.vue$/, loader: "vue-loader" },
-      {
-        test: /\.js$/,
-        exclude: /(node_modules|bower_components)/,
-        loader: "babel-loader"
-      },
-      {
-        test: /\.scss$/,
-        use: ["style-loader", "css-loader", "resolve-url-loader", "sass-loader"]
-      },
-      { test: /\.css$/, use: ["style-loader", "css-loader"] },
-      {
-        test: /\.(gif|jpg|png|woff(2)?|svg|eot|ttf)$/,
-        loader: "file-loader",
-        options: {
-          publicPath: "./",
-          name: "[name].[ext]?[hash]"
-        }
-      }
+      { test: /\.scss$/, use: ['style-loader', 'css-loader', 'resolve-url-loader', 'sass-loader'] }
+      , { test: /\.css$/, use: ['style-loader', 'css-loader'] }
+      , { test: /\.vue$/, loader: 'vue-loader' }
     ]
-  },
-  resolve: {
-    extensions: ['.js', '.vue']
   },
   devServer: {
     open: true,
-    contentBase: resolve("."),
+    openPage: 'demo/',
+    contentBase: resolve('.'),
+    publicPath: '/demo',
     compress: true,
-    port: getEnv("DEV_PORT", 9000),
-    noInfo: true
+    port: getEnv('DEV_PORT', 9000),
+    noInfo: false
   },
-  devtool: "#source-map",
+  devtool: '#cheap-source-map',
   plugins: [
     new webpack.DefinePlugin({
-      "process.env": {
+      'process.env': {
         NODE_ENV: '"development"'
       }
-    }),
-    new HtmlWebpackPlugin({
-      template: "demo/index.html"
     })
-  ],
-  externals: {
-    lodash: '_',
-    vue: 'Vue'
-  }
-};
+    , new HtmlWebpackPlugin({
+      inject: false,
+      template: 'demo/index.html'
+    })
+  ]
+})
+
+// vim: set ft=javascript fdm=marker et ff=unix tw=80 sw=2:
