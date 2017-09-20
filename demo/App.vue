@@ -14,8 +14,8 @@
   const renderToolTip = function (h, {column, $index}) {
     return (<span>{column.label}</span>)
   }
-  const renderPercent = function (h,{column, row, $index}) {
-    return row[column.property] ? row[column.property] + '%' : 0
+  const renderPercent = function (column, row, value) {
+    return value ? value + '%' : 0
   }
   export default {
     data: function () {
@@ -42,10 +42,10 @@
         {
           label: '',
           width:150,
-          render(h,{$index}){
+          render(h,{$index,cellIndex}){
             return (<button onClick={function () {
               alert(`已收藏第${$index+1}列`)
-            }}>点击收藏</button>)
+            }}>点击收藏{$index}-{cellIndex}</button>)
           },
           className:'td-border'
         },
@@ -55,13 +55,13 @@
             {
               label: '男',
               prop: 'male',
-              render: renderPercent,
+              formatter: renderPercent,
               width:100
             },
             {
               label: '女',
               prop: 'female',
-              render: renderPercent,
+              formatter: renderPercent,
               width:100,
               className:'td-border'
             }
@@ -73,30 +73,30 @@
             {
               label: '24岁以下',
               prop: '24',
-              render: renderPercent,
+              formatter: renderPercent,
               sortable: 'custom',
               width: 120,
             },
             {
               label: '25~30岁',
               prop: '25',
-              render: renderPercent,
+              formatter: renderPercent,
               sortable:true
             },
             {
               label: '31~35岁',
               prop: '31',
-              render: renderPercent
+              formatter: renderPercent
             },
             {
               label: '36~40岁',
               prop: '36',
-              render: renderPercent
+              formatter: renderPercent
             },
             {
               label: '41岁及以上',
               prop: '41',
-              render: renderPercent,
+              formatter: renderPercent,
               className:'td-border'
             }
           ]
@@ -108,31 +108,31 @@
               label: '高等消费者',
               'render-header': renderToolTip,
               prop: 'high',
-              render: renderPercent
+              formatter: renderPercent
             },
             {
               label: '中高消费者',
               'render-header': renderToolTip,
               prop: 'highMedium',
-              render: renderPercent
+              formatter: renderPercent
             },
             {
               label: '中等消费者',
               'render-header': renderToolTip,
               prop: 'medium',
-              render: renderPercent
+              formatter: renderPercent
             },
             {
               label: '中低消费者',
               'render-header': renderToolTip,
               prop: 'lowMedium',
-              render: renderPercent
+              formatter: renderPercent
             },
             {
               label: '低消费者',
               'render-header': renderToolTip,
               prop: 'low',
-              render: renderPercent,
+              formatter: renderPercent,
               className:'td-border'
             }
           ]
@@ -144,31 +144,31 @@
               label: '超一线城市',
               'render-header': renderToolTip,
               prop: 'superOne',
-              render: renderPercent
+              formatter: renderPercent
             },
             {
               label: '一线城市',
               'render-header': renderToolTip,
               prop: 'one',
-              render: renderPercent
+              formatter: renderPercent
             },
             {
               label: '二线城市',
               'render-header': renderToolTip,
               prop: 'two',
-              render: renderPercent
+              formatter: renderPercent
             },
             {
               label: '三线城市',
               'render-header': renderToolTip,
               prop: 'three',
-              render: renderPercent
+              formatter: renderPercent
             },
             {
               label: '非线级城市及其他',
               'render-header': renderToolTip,
               prop: 'four',
-              render: renderPercent,
+              formatter: renderPercent,
             }
           ]
         }
