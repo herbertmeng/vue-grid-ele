@@ -9,6 +9,8 @@
     "url": "http://git.analysys.cn/fss-modules/@vue/table"
   },
   "author": "ljwrer <rayjump@163.com>",
+  "keywords": [
+  ],
   "dependencies": {
     "async-validator": "^1.8.1",
     "deepmerge": "^1.5.1",
@@ -40,8 +42,8 @@
     "style-loader": "^0.18.2",
     "vue-loader": "^13.0.5",
     "vue-template-compiler": "^2.4.4",
-    "webpack": "^3.6.0",
-    "webpack-dev-server": "^2.8.2",
+    "webpack": "^3",
+    "webpack-dev-server": "^2",
     "webpack-merge": "^4.1.0"
   },
   "peerDependencies": {
@@ -58,15 +60,16 @@
     "start": "npm run dev"
   },
   "maintainers": [
-    {
-      "name": "ljwrer",
-      "email": "rayjump@163.com"
-    }
+    { "name": "ljwrer", "email": "rayjump@163.com" },
+    { "name": "allex", "email": "allex.wxn@gmail.com" }
   ],
   "fss": {
     "distname": "v-table",
     "library": "vTable",
-    "cdnPrefix": "//s2.analysys.cn/-/"
+    "cdnPrefix": "//s2.analysys.cn/-/",
+    "externals": {
+      "@vue/utils": "VueUtils"
+    }
   },
   "standard": {
     "ignore": [

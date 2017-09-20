@@ -10,20 +10,15 @@ vue table component
 ```bash
 npm install @vue/table
 ```
-```js
-import VTable from '@vue/table'
-import '@vue/table/dist/v-table.css'
-```
 
-or
 ```js
-import VTable from '@vue/table/dist/v-table.bundle.js'
+import vTable from '@vue/table'
 ```
 
 ### build thead by template
 
 ```js
-import {table,tableColumn} from '@vue/table'
+import { table, tableColumn } from '@vue/table'
 ```
 
 ## props
