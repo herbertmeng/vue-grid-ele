@@ -3,14 +3,22 @@
     <h1>Hello World</h1>
     <p>This is demo page for fss module.</p>
     <div class="m-table">
-      <v-table :data="data" height="500" border :columns="columns" @sort-change="handleSort" stripe/>
+      <v-grid :data="data" height="500" border :columns="columns" @sort-change="handleSort" stripe/>
     </div>
+    {{columnsTest.className}}
+    <v-table :data="data">
+      <v-table-column v-bind="columnsTest"></v-table-column>
+    </v-table>
+
   </div>
 </template>
 
 <script type="text/jsx">
   import _ from 'lodash'
-  import VTable from '../src'
+  import VGrid from '../src'
+  const {table, tableColumn} = VGrid
+  import VTable from "../src/packages/table/src/table.vue";
+  let i = 0;
   const renderToolTip = function (h, {column, $index}) {
     return (<span>{column.label}</span>)
   }
@@ -37,7 +45,8 @@
           prop: 'industry',
           'render-header': renderToolTip,
           fixed: true,
-          width:200
+          width:200,
+          className:'x'
         },
         {
           label: '',
@@ -202,7 +211,7 @@
           col.width = 40+col.label.length*20
         }
         if(col.children){
-          col.className = col.className + ' border'
+          col.className = col.className||'' + ' border'
           col.children.forEach(resetCol)
         }
       }
@@ -210,7 +219,15 @@
       return {
         data,
         columns,
-        saveData
+        saveData,
+        columnsTest:{
+          label: '行业',
+          prop: 'industry',
+          'render-header': renderToolTip,
+          fixed: true,
+          width:200,
+          className:'x'
+        }
       }
     },
     methods: {
@@ -232,8 +249,17 @@
         this.data = this.saveData
       }
     },
+    created(){
+      setInterval(()=>{
+        this.columns[2].className = `x${i++}`
+        this.columnsTest.className = `x${i++}`
+      },2000)
+    },
     components: {
-      VTable
+      VTable,
+      VGrid,
+      [table.name]:table,
+      [tableColumn.name]:tableColumn
     }
   }
 </script>

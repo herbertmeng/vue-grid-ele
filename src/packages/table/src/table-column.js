@@ -370,6 +370,12 @@ export default {
       if (this.columnConfig) {
         this.columnConfig.sortable = newVal;
       }
+    },
+
+    className(newVal){
+      if (this.className) {
+        this.columnConfig.className = newVal;
+      }
     }
   },
 
