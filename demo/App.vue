@@ -250,10 +250,7 @@
       }
     },
     created(){
-      setInterval(()=>{
-        this.columns[2].className = `x${i++}`
-        this.columnsTest.className = `x${i++}`
-      },2000)
+
     },
     components: {
       VTable,
