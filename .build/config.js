@@ -51,6 +51,17 @@ const webpackBase = {
   module: {
     rules: [
       {
+        test: /\.js$/,
+        exclude: /(node_modules|bower_components)/,
+        use: [ {
+          loader: 'babel-loader',
+          options: {
+            cacheDirectory: true,
+            cacheIdentifier: true
+          }
+        } ]
+      }
+      , {
         test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
         loader: 'url-loader',
         options: {
@@ -62,17 +73,8 @@ const webpackBase = {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
         loader: 'file-loader',
         options: {
-          publicPath: `${fssConfig ? fssConfig.publicPath : '/dist/'}`,
+          publicPath: (fssConfig && fssConfig.publicPath || '') + '/dist/',
           name: 'images/[name].[ext]?[hash]'
-        }
-      }
-      , {
-        test: /\.js$/,
-        loader: 'babel-loader',
-        exclude: /(node_modules|bower_components)/,
-        options: {
-          cacheDirectory: true,
-          cacheIdentifier: true
         }
       }
     ]
@@ -87,7 +89,7 @@ const webpackBase = {
       'src': resolve('src'),
       'vue': 'vue/dist/vue.esm.js'
     },
-    extensions:['.js','.vue']
+    extensions: [".js", ".json", ".vue", ".jsx"]
   },
   plugins: [
     new ProgressPlugin()

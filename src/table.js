@@ -1,4 +1,3 @@
-import _ from 'lodash'
 import table from './packages/table'
 import tableColumn from './packages/table-column'
 import tableColumnGroup from './table-column-group'
@@ -7,7 +6,7 @@ export default {
   name: 'v-grid',
   render () {
     const tableProps = {
-      attrs: _.omit(this.$attrs, _.keys(this.$props)),
+      props: this.$attrs,
       on: this.$listeners
     }
     return (<v-table {...tableProps}>

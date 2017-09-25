@@ -6,33 +6,24 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "http://git.analysys.cn/fss-modules"
+    "url": "http://git.analysys.cn/fss-modules/@vue/table"
   },
-  "author": "ljwrer <rayjump@163.com>",
+  "keywords": [
+  ],
   "dependencies": {
-    "async-validator": "^1.8.1",
-    "deepmerge": "^1.5.1",
-    "lodash": "^4.17.4",
-    "throttle-debounce": "^1.0.1",
-    "vue": "^2.4.4"
   },
   "devDependencies": {
-    "@fedor/progress-webpack-plugin": "^1.0.0",
     "@fedor/standard": "latest",
+    "@fedor/progress-webpack-plugin": "^1.0.0",
     "babel-core": "^6.25.0",
-    "babel-helper-vue-jsx-merge-props": "^2.0.2",
     "babel-loader": "^7.1.1",
-    "babel-plugin-syntax-jsx": "^6.18.0",
     "babel-plugin-transform-class-properties": "^6.24.1",
-    "babel-plugin-transform-es2015-spread": "^6.22.0",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-plugin-transform-runtime": "^6.23.0",
-    "babel-plugin-transform-vue-jsx": "^3.5.0",
     "babel-preset-env": "^1.5.2",
-    "babel-preset-es2015": "^6.24.1",
-    "babel-preset-stage-2": "^6.24.1",
+    "babel-runtime": "^6.26.0",
     "cross-env": "^5.0.5",
     "css-loader": "^0.28.4",
-    "env-parse": "^1.0.5",
     "extract-text-webpack-plugin": "^3.0.0",
     "file-loader": "^0.11.2",
     "html-webpack-plugin": "^2.30.1",
@@ -41,16 +32,17 @@
     "style-loader": "^0.18.2",
     "vue-loader": "^13.0.4",
     "vue-template-compiler": "^2.4.2",
+    "env-parse": "^1.0.5",
     "webpack": "^3.5.4",
-    "webpack-dev-server": "^2.8.2",
+    "webpack-dev-server": "^2.7.1",
     "webpack-merge": "^4.1.0"
   },
   "peerDependencies": {
     "@vue/utils": "^1.0.0",
-    "vue": "^2.4.4"
+    "vue": ">=2"
   },
   "scripts": {
-    "dev": "npm test && cross-env NODE_ENV=development webpack-dev-server --config ./.build/webpack.config.dev.js",
+    "dev": "npm test && cross-env NODE_ENV=development webpack-dev-server --config ./.build/webpack.config.dev.js --hot",
     "build": "npm test && cross-env NODE_ENV=production webpack --config ./.build/webpack.config.prod.js",
     "lint": "standard \"**/*.{js,vue}\"",
     "lint:fix": "standard \"**/*.{js,vue}\" --fix",
@@ -58,25 +50,15 @@
     "publish": "npm run build",
     "start": "npm run dev"
   },
+  "maintainers": [
+    { "name": "ljwrer", "email": "ljwrer@sina.com" }
+  ],
   "fss": {
     "distname": "v-table",
     "library": "vTable",
     "cdnPrefix": "//s2.analysys.cn/-/"
   },
   "standard": {
-    "ignore": [
-      "src/packages",
-      "src/src"
-    ]
-  },
-  "maintainers": [
-    {
-      "name": "public",
-      "email": "allex.wxn@gmail.com"
-    },
-    {
-      "name": "ljwrer",
-      "email": "rayjump@163.com"
-    }
-  ]
+    "ignore": [ "*.tmp" ,"src/packages", "src/src"]
+  }
 }

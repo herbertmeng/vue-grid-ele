@@ -72,6 +72,7 @@ const genWebpackCfg = function (filename, library, option) {
       path: resolve('dist'),
       publicPath: '/dist/',
       filename: `${filename}.js`,
+      libraryExport: 'default',
       libraryTarget: 'umd',
       library: {
         root: `${library}`,
@@ -82,9 +83,9 @@ const genWebpackCfg = function (filename, library, option) {
     },
     module: {
       rules: [
-        { test: /\.scss$/, use: genCssLoader(option) }
-        , { test: /\.css$/, use: genSassLoader(option) }
-        , { test: /\.vue$/, loader: 'vue-loader', options: genVueLoadOptions(option) }
+        { test: /\.vue$/, loader: 'vue-loader', options: genVueLoadOptions(option) },
+        { test: /\.scss$/, use: genSassLoader(option) }
+        , { test: /\.css$/, use: genCssLoader(option) }
       ]
     },
     devtool: 'source-map',
@@ -100,8 +101,24 @@ const genWebpackCfg = function (filename, library, option) {
   if (!option.bundle) {
     config.plugins.push(new ExtractTextPlugin(`${filename}.css`))
   }
+
   if (option.minimize) {
-    config.plugins.push(new UglifyJSPlugin({ parallel: true, sourceMap: true }))
+    config.plugins.push(
+      new UglifyJSPlugin({
+        parallel: true,
+        sourceMap: true,
+        comments: function (n, c) {
+          /*
+          IMPORTANT: Please preserve 3rd-party library license info,
+          inspired from @allex/amd-build-worker/config/util.js
+          */
+          var text = c.value, type = c.type;
+          if (type == 'comment2') {
+            return /^!|@preserve|@license|@cc_on|MIT/i.test(text)
+          }
+        }
+      })
+    )
   }
 
   return webpackBase.extend(config)
