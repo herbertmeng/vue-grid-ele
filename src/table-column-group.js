@@ -20,7 +20,7 @@ export default {
         }
       }
       const colProps = {
-        attrs: _.omit(col, 'render')
+        props: _.omit(col, 'render')
       }
       const columnKey = _.uniqueId('table-column')
       if (_.size(col.children)) {
