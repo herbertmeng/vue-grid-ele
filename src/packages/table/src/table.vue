@@ -1,5 +1,5 @@
 <template>
-  <div class="v-table"
+  <div class="v-table" :style="{visibility: frame.done?'visible':'hidden'}"
     :class="{
       'v-table--fit': fit,
       'v-table--striped': stripe,
@@ -153,7 +153,7 @@
   import { mousewheel } from './util';
 
   let tableIdSeed = 1;
-
+  const FrameMaxDelay = 1000
   export default {
     name: 'VTable',
 
@@ -297,8 +297,22 @@
           if (this.$el) {
             this.isHidden = this.$el.clientWidth === 0;
           }
+          this.frameTick()
         });
+      },
+      /**
+       *  blink if not V8
+       */
+      frameTick(){
+        if(this.frame.done) return
+        if(this.frame.index++===this.frameDoneIndex){
+          this.frame.done = true
+        }
+        setTimeout(()=>{
+          this.frame.done = true
+        },FrameMaxDelay)
       }
+
     },
 
     created() {
@@ -396,6 +410,10 @@
         }
 
         return style;
+      },
+
+      frameDoneIndex() {
+        return this.fit?3:2
       }
     },
 
@@ -454,12 +472,17 @@
         fit: this.fit,
         showHeader: this.showHeader
       });
+      const frame = {
+        index: 0,
+        done: false
+      }
       return {
         store,
         layout,
         isHidden: false,
         renderExpanded: null,
-        resizeProxyVisible: false
+        resizeProxyVisible: false,
+        frame
       };
     }
   };
