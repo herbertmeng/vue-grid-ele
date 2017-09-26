@@ -1,6 +1,6 @@
 <template>
   <div class="v-table" :style="{visibility: frame.done?'visible':'hidden'}"
-    :class="{
+       :class="{
       'v-table--fit': fit,
       'v-table--striped': stripe,
       'v-table--border': border,
@@ -9,7 +9,7 @@
       'v-table--enable-row-hover': !store.states.isComplex,
       'v-table--enable-row-transition': (store.states.data || []).length !== 0 && (store.states.data || []).length < 100
     }"
-    @mouseleave="handleMouseLeave($event)">
+       @mouseleave="handleMouseLeave($event)">
     <div class="hidden-columns" ref="hiddenColumns"><slot></slot></div>
     <div class="v-table__header-wrapper" ref="headerWrapper" v-if="showHeader">
       <table-header
@@ -50,8 +50,8 @@
       </table-footer>
     </div>
     <div class="v-table__fixed" ref="fixedWrapper"
-      v-if="fixedColumns.length > 0"
-      :style="[
+         v-if="fixedColumns.length > 0"
+         :style="[
         { width: layout.fixedWidth ? layout.fixedWidth + 'px' : '' },
         fixedHeight
       ]">
@@ -64,7 +64,7 @@
           :style="{ width: layout.fixedWidth ? layout.fixedWidth + 'px' : '' }"></table-header>
       </div>
       <div class="v-table__fixed-body-wrapper" ref="fixedBodyWrapper"
-        :style="[
+           :style="[
           { top: layout.headerHeight + 'px' },
           fixedBodyHeight
         ]">
@@ -91,8 +91,8 @@
       </div>
     </div>
     <div class="v-table__fixed-right" ref="rightFixedWrapper"
-      v-if="rightFixedColumns.length > 0"
-      :style="[
+         v-if="rightFixedColumns.length > 0"
+         :style="[
         { width: layout.rightFixedWidth ? layout.rightFixedWidth + 'px' : '' },
         { right: layout.scrollY ? (border ? layout.gutterWidth : (layout.gutterWidth || 1)) + 'px' : '' },
         fixedHeight
@@ -106,7 +106,7 @@
           :style="{ width: layout.rightFixedWidth ? layout.rightFixedWidth + 'px' : '' }"></table-header>
       </div>
       <div class="v-table__fixed-body-wrapper" ref="rightFixedBodyWrapper"
-        :style="[
+           :style="[
           { top: layout.headerHeight + 'px' },
           fixedBodyHeight
         ]">
@@ -133,8 +133,8 @@
       </div>
     </div>
     <div class="v-table__fixed-right-patch"
-      v-if="rightFixedColumns.length > 0"
-      :style="{ width: layout.scrollY ? layout.gutterWidth + 'px' : '0', height: layout.headerHeight + 'px' }"></div>
+         v-if="rightFixedColumns.length > 0"
+         :style="{ width: layout.scrollY ? layout.gutterWidth + 'px' : '0', height: layout.headerHeight + 'px' }"></div>
     <div class="v-table__column-resize-proxy" ref="resizeProxy" v-show="resizeProxyVisible"></div>
   </div>
 </template>
@@ -151,9 +151,10 @@
   import TableHeader from './table-header';
   import TableFooter from './table-footer';
   import { mousewheel } from './util';
-
+  import $ from 'jquery'
   let tableIdSeed = 1;
   const FrameMaxDelay = 1000
+  const is_safari = navigator.userAgent.indexOf("Safari") > -1;
   export default {
     name: 'VTable',
 
@@ -304,13 +305,52 @@
        *  blink if not V8
        */
       frameTick(){
-        if(this.frame.done) return
-        if(this.frame.index++===this.frameDoneIndex){
-          this.frame.done = true
+        if(this.frame.done){
+          this.clearFrameQueue()
+          return
         }
-        setTimeout(()=>{
-          this.frame.done = true
+        if(this.frame.index++===this.frameDoneIndex){
+          this.adjustFrame()
+        }
+        this.enqueueFrameQueue(()=>{
+          this.adjustFrame()
         },FrameMaxDelay)
+      },
+
+      enqueueFrameQueue(fn,time=0){
+        const timeoutId = setTimeout(fn,time)
+        this.frame.queue.unshift(timeoutId)
+      },
+
+      clearFrameQueue(){
+        while(this.frame.queue.length>0){
+          const timeoutId = this.frame.queue.pop()
+          clearTimeout(timeoutId)
+        }
+      },
+
+      adjustFrame(){
+        if(is_safari){
+          const $table = $(this.$el).find('table')
+          $table.css({
+            'table-layout':'auto'
+          })
+          setTimeout(()=>{
+            $table.css({
+              'table-layout':'fixed'
+            })
+            setTimeout(()=>{
+              this.setFrameVisible()
+            })
+          })
+        }else {
+          this.setFrameVisible()
+        }
+      },
+
+      setFrameVisible(){
+        this.clearFrameQueue()
+        this.frame.done = true
       }
 
     },
@@ -474,7 +514,8 @@
       });
       const frame = {
         index: 0,
-        done: false
+        done: false,
+        queue: []
       }
       return {
         store,

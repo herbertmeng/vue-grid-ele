@@ -1,5 +1,8 @@
 .v-table{
   color: #28344b;
+  div.v-table__fixed{
+    overflow: hidden;
+  }
   th {
     background: #e9ecf7;
     font-weight: bold;
