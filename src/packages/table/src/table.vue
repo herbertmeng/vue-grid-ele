@@ -481,6 +481,7 @@
 
     destroyed() {
       if (this.windowResizeListener) removeResizeListener(this.$el, this.windowResizeListener);
+      this.clearFrameQueue()
     },
 
     mounted() {
