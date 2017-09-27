@@ -1,6 +1,6 @@
 {
   "name": "@vue/table",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "a vue table component",
   "main": "dist/v-table.bundle.js",
   "license": "MIT",
@@ -8,33 +8,40 @@
     "type": "git",
     "url": "http://git.analysys.cn/fss-modules/@vue/table"
   },
-  "keywords": [
-  ],
+  "author": "ljwrer <rayjump@163.com>",
   "dependencies": {
+    "async-validator": "^1.8.1",
+    "deepmerge": "^1.5.1",
+    "jquery": "^3.2.1",
+    "lodash": "^4.17.4",
+    "throttle-debounce": "^1.0.1"
   },
   "devDependencies": {
-    "@fedor/standard": "latest",
     "@fedor/progress-webpack-plugin": "^1.0.0",
+    "@fedor/standard": "latest",
     "babel-core": "^6.25.0",
+    "babel-helper-vue-jsx-merge-props": "^2.0.2",
     "babel-loader": "^7.1.1",
+    "babel-plugin-syntax-jsx": "^6.18.0",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-plugin-transform-vue-jsx": "^3.5.0",
     "babel-preset-env": "^1.5.2",
     "babel-runtime": "^6.26.0",
     "cross-env": "^5.0.5",
     "css-loader": "^0.28.4",
+    "env-parse": "^1.0.5",
     "extract-text-webpack-plugin": "^3.0.0",
     "file-loader": "^0.11.2",
     "html-webpack-plugin": "^2.30.1",
     "resolve-url-loader": "^2.1.0",
     "sass-loader": "^6.0.6",
     "style-loader": "^0.18.2",
-    "vue-loader": "^13.0.4",
-    "vue-template-compiler": "^2.4.2",
-    "env-parse": "^1.0.5",
-    "webpack": "^3.5.4",
-    "webpack-dev-server": "^2.7.1",
+    "vue-loader": "^13.0.5",
+    "vue-template-compiler": "^2.4.4",
+    "webpack": "^3.6.0",
+    "webpack-dev-server": "^2.8.2",
     "webpack-merge": "^4.1.0"
   },
   "peerDependencies": {
@@ -51,7 +58,10 @@
     "start": "npm run dev"
   },
   "maintainers": [
-    { "name": "ljwrer", "email": "ljwrer@sina.com" }
+    {
+      "name": "ljwrer",
+      "email": "rayjump@163.com"
+    }
   ],
   "fss": {
     "distname": "v-table",
@@ -59,6 +69,10 @@
     "cdnPrefix": "//s2.analysys.cn/-/"
   },
   "standard": {
-    "ignore": [ "*.tmp" ,"src/packages", "src/src"]
+    "ignore": [
+      "*.tmp",
+      "src/packages",
+      "src/src"
+    ]
   }
 }
