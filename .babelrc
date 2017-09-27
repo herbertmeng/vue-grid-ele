@@ -1,17 +1,23 @@
 {
   "presets": [
-    "es2015",
-    ["env", { "modules": false }],
-    "stage-2"
+    ["env", {
+      "loose": true,
+      "modules": false,
+      "useBuiltIns": true,
+      "targets": {
+        "browsers": [ "Ie > 8", "last 2 version", "safari >= 9" ]
+      }
+    }]
   ],
   "plugins": [
-    "transform-runtime",
-    "transform-vue-jsx"
+    [ "transform-runtime", {
+      "helpers": false,
+      "polyfill": false,
+      "regenerator": true } ],
+    "transform-vue-jsx",
+    [ "transform-class-properties", { "spec": true } ],
+    [ "transform-object-rest-spread", { "useBuiltIns": true } ]
   ],
-  "comments": false,
-  "env": {
-    "test": {
-      "presets": ["env", "stage-2"]
-    }
-  }
+  "comments": false
 }
+
