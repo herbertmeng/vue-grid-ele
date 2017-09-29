@@ -119,7 +119,7 @@ class TableLayout {
       if (bodyMinWidth < bodyWidth - this.gutterWidth) { // DON'T HAVE SCROLL BAR
         this.scrollX = false;
 
-        const totalFlexWidth = bodyWidth - this.gutterWidth - bodyMinWidth;
+        const totalFlexWidth = bodyWidth - bodyMinWidth;
 
         if (flexColumns.length === 1) {
           flexColumns[0].realWidth = (flexColumns[0].minWidth || 80) + totalFlexWidth;
