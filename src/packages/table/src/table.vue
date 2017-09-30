@@ -152,10 +152,11 @@
   import TableFooter from './table-footer';
   import { mousewheel } from './util';
   import $ from 'jquery'
+  import is from './is'
   let tableIdSeed = 1;
-  const FrameMaxDelay = 1000
-  const is_safari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
-  console.log(is_safari)
+  const is_safari = is.safari();
+  const is_chrome = is.chrome();
+  const FrameMaxDelay = is_chrome?600:0;
   export default {
     name: 'VTable',
 
