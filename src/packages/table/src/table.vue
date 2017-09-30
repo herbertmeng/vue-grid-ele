@@ -154,7 +154,8 @@
   import $ from 'jquery'
   let tableIdSeed = 1;
   const FrameMaxDelay = 1000
-  const is_safari = navigator.userAgent.indexOf("Safari") > -1;
+  const is_safari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+  console.log(is_safari)
   export default {
     name: 'VTable',
 
@@ -311,10 +312,11 @@
         }
         if(this.frame.index++===this.frameDoneIndex){
           this.adjustFrame()
+        }else {
+          this.enqueueFrameQueue(()=>{
+            this.adjustFrame()
+          },FrameMaxDelay)
         }
-        this.enqueueFrameQueue(()=>{
-          this.adjustFrame()
-        },FrameMaxDelay)
       },
 
       enqueueFrameQueue(fn,time=0){
