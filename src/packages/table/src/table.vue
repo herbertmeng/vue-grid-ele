@@ -154,9 +154,13 @@
   import $ from 'jquery'
   import is from './is'
   let tableIdSeed = 1;
-  const is_safari = is.safari();
-  const is_chrome = is.chrome();
-  const FrameMaxDelay = is_chrome?600:0;
+  const isSafari = is.safari();
+  const FrameMaxDelay = 1000;
+  const FrameSymbol = {
+    'UPDATE':'update',
+    'DONE':'done',
+    'RESIZE': 'resize'
+  }
   export default {
     name: 'VTable',
 
@@ -279,13 +283,15 @@
 
         if (this.fit) {
           this.windowResizeListener = throttle(50, () => {
-            if (this.$ready) this.doLayout();
+            if (this.$ready) {
+              this.doLayout(FrameSymbol.RESIZE);
+            }
           });
           addResizeListener(this.$el, this.windowResizeListener);
         }
       },
 
-      doLayout() {
+      doLayout(signal) {
         this.store.updateColumns();
         this.layout.update();
         this.updateScrollY();
@@ -300,23 +306,35 @@
           if (this.$el) {
             this.isHidden = this.$el.clientWidth === 0;
           }
-          this.frameTick()
+          this.frameTick(signal)
         });
       },
       /**
        *  blink if not V8
        */
-      frameTick(){
+      frameTick(signal){
         if(this.frame.done){
-          this.clearFrameQueue()
-          return
+          return this.clearFrameQueue()
         }
-        if(this.frame.index++===this.frameDoneIndex){
+        this.enqueueFrameQueue(()=>{
           this.adjustFrame()
-        }else {
-          this.enqueueFrameQueue(()=>{
+        },FrameMaxDelay)
+        this.handleFrameSignal(signal)
+      },
+
+      handleFrameSignal(signal){
+        if(signal === FrameSymbol.UPDATE){
+          this.frame.signal = FrameSymbol.UPDATE
+          this.setFrameVisible(false)
+        }else if(signal === FrameSymbol.DONE){
+          if(this.frame.signal === FrameSymbol.UPDATE){
+            this.frame.signal = FrameSymbol.DONE
+          }else {
             this.adjustFrame()
-          },FrameMaxDelay)
+          }
+        }else if(signal === FrameSymbol.RESIZE&&this.frame.signal === FrameSymbol.DONE){
+          this.adjustFrame()
+          this.frame.signal = ''
         }
       },
 
@@ -333,7 +351,7 @@
       },
 
       adjustFrame(){
-        if(is_safari){
+        if(isSafari&&!this.frame.style){
           const $table = $(this.$el).find('table')
           $table.css({
             'table-layout':'auto'
@@ -345,22 +363,31 @@
             setTimeout(()=>{
               this.setFrameVisible()
             })
+            this.frame.style = true
           })
         }else {
           this.setFrameVisible()
         }
       },
 
-      setFrameVisible(){
-        this.clearFrameQueue()
-        this.frame.done = true
+      setFrameVisible(visible){
+        if(visible === false){
+          this.$nextTick(()=>{
+            this.frame.done = false
+          })
+        }else {
+          this.clearFrameQueue()
+          this.$nextTick(()=>{
+            this.frame.done = true
+          })
+        }
       }
 
     },
 
     created() {
       this.tableId = 'v-table_' + tableIdSeed + '_';
-      this.debouncedLayout = debounce(50, () => this.doLayout());
+      this.debouncedLayout = debounce(50, () => this.doLayout(FrameSymbol.DONE));
     },
 
     computed: {
@@ -473,7 +500,7 @@
         immediate: true,
         handler(val) {
           this.store.commit('setData', val);
-          if (this.$ready) this.doLayout();
+          if (this.$ready) this.doLayout(FrameSymbol.UPDATE);
         }
       },
 
@@ -489,7 +516,7 @@
 
     mounted() {
       this.bindEvents();
-      this.doLayout();
+      this.doLayout('from mounted');
 
       // init filters
       this.store.states.columns.forEach(column => {
@@ -519,7 +546,9 @@
       const frame = {
         index: 0,
         done: false,
-        queue: []
+        style: false,
+        queue: [],
+        signal: ''
       }
       return {
         store,

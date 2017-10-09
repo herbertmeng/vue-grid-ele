@@ -1,6 +1,4 @@
-const is = {
-
-}
+const is = {}
 var userAgent = (navigator && navigator.userAgent || '').toLowerCase();
 var vendor = (navigator && navigator.vendor || '').toLowerCase();
 var comparator = {
