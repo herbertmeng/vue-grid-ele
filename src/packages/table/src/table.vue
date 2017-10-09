@@ -482,9 +482,6 @@
         return style;
       },
 
-      frameDoneIndex() {
-        return this.fit?3:2
-      }
     },
 
     watch: {
@@ -516,7 +513,7 @@
 
     mounted() {
       this.bindEvents();
-      this.doLayout('from mounted');
+      this.doLayout();
 
       // init filters
       this.store.states.columns.forEach(column => {
@@ -544,7 +541,6 @@
         showHeader: this.showHeader
       });
       const frame = {
-        index: 0,
         done: false,
         style: false,
         queue: [],
