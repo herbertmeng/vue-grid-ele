@@ -37,7 +37,7 @@ module.exports = webpackBase.extend({
     port: getEnv('DEV_PORT', 9000),
     noInfo: false
   },
-  devtool: '#source-map',
+  devtool: '#cheap-source-map',
   plugins: [
     new webpack.DefinePlugin({
       'process.env': {

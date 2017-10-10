@@ -83,9 +83,9 @@ const genWebpackCfg = function (filename, library, option) {
     },
     module: {
       rules: [
-        { test: /\.vue$/, loader: 'vue-loader', options: genVueLoadOptions(option) },
         { test: /\.scss$/, use: genSassLoader(option) }
         , { test: /\.css$/, use: genCssLoader(option) }
+        , { test: /\.vue$/, loader: 'vue-loader', options: genVueLoadOptions(option) }
       ]
     },
     devtool: 'source-map',
@@ -145,7 +145,7 @@ const entries = createOutputList(fssConfig.distname, fssConfig.library).map(func
 })
 
 !function(demo) {
-  demo.devtool = 'source-map',
+  demo.devtool = 'source-map'
   entries.push(demo)
 }(require('./webpack.config.dev'))
 

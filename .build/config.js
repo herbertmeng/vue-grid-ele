@@ -35,17 +35,25 @@ function $external (module, root) {
 }
 
 // Normalize fss configrations
-const fssConfig = pkg.fss
-if (fssConfig) {
-  if (!fssConfig.publicPath) {
+const fssConfig = pkg.fss || {}
+if (!fssConfig.publicPath) {
     let cdnPrefix = fssConfig.cdnPrefix
     if (!cdnPrefix) {
       throw new Error('FSS cdn prefix not found.')
     }
     cdnPrefix = cdnPrefix.replace(/\/+$/, '')
     fssConfig.publicPath = `${cdnPrefix}/${pkg.name}@${pkg.version}`
-  }
 }
+
+Object.defineProperty(fssConfig, 'init', {
+  writable: false,
+  configurable: false,
+  enumerable: false,
+  value: function (cfg) {
+    Object.assign(cfg.externals || (cfg.externals = {}),
+      $external(fssConfig.externals))
+  }
+})
 
 const webpackBase = {
   module: {
@@ -96,18 +104,17 @@ const webpackBase = {
   ],
   externals: $external({
     'jquery': '$',
-    'jquery-mousewheel': '$',
     'react': 'React',
     'vue': 'Vue',
-    'lodash': '_',
-    '@vue/utils': 'VueUtils',
-    '@fedor/v-utils': '___'
+    'lodash': '_'
   }),
   devtool: false,
   performance: {
     hints: 'warning'
   }
 }
+
+fssConfig.init(webpackBase)
 
 // make webpack config extendable.
 ;(function extendable (o) {
