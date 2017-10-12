@@ -3,6 +3,9 @@
   div.v-table__fixed{
     overflow: hidden;
   }
+  .v-table__body{
+    transform: translateZ(0);
+  }
   th,td{
     background-clip: padding-box;
     &.td-border{
