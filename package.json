@@ -1,6 +1,6 @@
 {
   "name": "@vue/table",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "a vue table component",
   "main": "dist/v-table.bundle.js",
   "license": "MIT",
@@ -56,7 +56,7 @@
     "lint": "standard \"**/*.{js,vue}\"",
     "lint:fix": "standard \"**/*.{js,vue}\" --fix",
     "test": "npm run lint",
-    "publish": "npm run build",
+    "prepublish": "npm run build",
     "start": "npm run dev"
   },
   "maintainers": [
