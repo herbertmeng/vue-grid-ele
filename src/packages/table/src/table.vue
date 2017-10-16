@@ -351,7 +351,7 @@
       },
 
       adjustFrame(){
-        if(isSafari&&!this.frame.style){
+        if(isSafari){
           const $table = $(this.$el).find('table')
           $table.css({
             'table-layout':'auto'
@@ -360,10 +360,7 @@
             $table.css({
               'table-layout':'fixed'
             })
-            setTimeout(()=>{
-              this.setFrameVisible()
-            })
-            this.frame.style = true
+            this.setFrameVisible()
           })
         }else {
           this.setFrameVisible()
@@ -542,7 +539,6 @@
       });
       const frame = {
         done: false,
-        style: false,
         queue: [],
         signal: ''
       }
