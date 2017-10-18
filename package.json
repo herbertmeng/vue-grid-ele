@@ -1,6 +1,6 @@
 {
   "name": "@vue/table",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "description": "a vue table component",
   "main": "dist/v-table.bundle.js",
   "license": "MIT",
