@@ -37,6 +37,9 @@ import { table, tableColumn } from '@vue/table'
 #### children:Array
 多级表头
 
+### renderDelay:`<number:1000>`
+表格渲染延时，默认1000ms
+
 ### 基础表格
 
 基础的表格展示用法。
