@@ -155,7 +155,6 @@
   import is from './is'
   let tableIdSeed = 1;
   const isSafari = is.safari();
-  const FrameMaxDelay = 1000;
   const FrameSymbol = {
     'UPDATE':'update',
     'DONE':'done',
@@ -220,7 +219,12 @@
 
       defaultSort: Object,
 
-      tooltipEffect: String
+      tooltipEffect: String,
+
+      renderDelay: {
+        type:Number,
+        default: 1000
+      }
     },
 
     components: {
@@ -318,11 +322,12 @@
         }
         this.enqueueFrameQueue(()=>{
           this.adjustFrame()
-        },FrameMaxDelay)
+        },this.renderDelay)
         this.handleFrameSignal(signal)
       },
 
       handleFrameSignal(signal){
+        console.log(`table layout:${signal}`)
         if(signal === FrameSymbol.UPDATE){
           this.frame.signal = FrameSymbol.UPDATE
           this.setFrameVisible(false)
@@ -510,7 +515,7 @@
 
     mounted() {
       this.bindEvents();
-      this.doLayout();
+      this.doLayout('mounted');
 
       // init filters
       this.store.states.columns.forEach(column => {
