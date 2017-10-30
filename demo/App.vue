@@ -3,13 +3,9 @@
     <h1>Hello World</h1>
     <p>This is demo page for fss module.</p>
     <div class="m-table">
-      <v-grid :data="data" height="500" border :columns="columns" @sort-change="handleSort" stripe/>
+      <v-grid :data="data" height="300" border :columns="columns" @sort-change="handleSort" stripe/>
     </div>
-    {{columnsTest.className}}
-    <v-table :data="data">
-      <v-table-column v-bind="columnsTest"></v-table-column>
-    </v-table>
-
+    <button @click="clickHandler">clickHandler</button>
   </div>
 </template>
 
@@ -18,7 +14,7 @@
   import VGrid from '../src'
   const {table, tableColumn} = VGrid
   import VTable from "../src/packages/table/src/table.vue";
-  let i = 0;
+
   const renderToolTip = function (h, {column, $index}) {
     return (<span>{column.label}</span>)
   }
@@ -247,6 +243,9 @@
       },
       restoreData(){
         this.data = this.saveData
+      },
+      clickHandler(){
+        this.data.pop()
       }
     },
     created(){

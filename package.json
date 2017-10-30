@@ -9,13 +9,13 @@
     "url": "http://git.analysys.cn/fss-modules/@vue/table"
   },
   "author": "ljwrer <rayjump@163.com>",
-  "keywords": [
-  ],
+  "keywords": [],
   "dependencies": {
     "async-validator": "^1.8.1",
     "deepmerge": "^1.5.1",
     "jquery": "^3.2.1",
     "lodash": "^4.17.4",
+    "nicescroll": "^3.7.4",
     "throttle-debounce": "^1.0.1"
   },
   "devDependencies": {
@@ -60,8 +60,14 @@
     "start": "npm run dev"
   },
   "maintainers": [
-    { "name": "ljwrer", "email": "rayjump@163.com" },
-    { "name": "allex", "email": "allex.wxn@gmail.com" }
+    {
+      "name": "ljwrer",
+      "email": "rayjump@163.com"
+    },
+    {
+      "name": "allex",
+      "email": "allex.wxn@gmail.com"
+    }
   ],
   "fss": {
     "distname": "v-table",
