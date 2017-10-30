@@ -376,11 +376,13 @@
         if(visible === false){
           this.$nextTick(()=>{
             this.frame.done = false
+            this.$parent.$emit('frame-update')
           })
         }else {
           this.clearFrameQueue()
           this.$nextTick(()=>{
             this.frame.done = true
+            this.$parent.$emit('frame-done')
           })
         }
       }
