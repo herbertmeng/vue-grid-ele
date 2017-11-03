@@ -102,11 +102,13 @@ const webpackBase = {
   plugins: [
     new ProgressPlugin()
   ],
-  externals: $external({
+  externals: Object.assign($external({
     'jquery': '$',
     'react': 'React',
     'vue': 'Vue',
     'lodash': '_'
+  }),{
+    'jquery.nicescroll':true
   }),
   devtool: false,
   performance: {

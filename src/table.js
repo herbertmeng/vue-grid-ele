@@ -42,9 +42,11 @@ export default {
       this.nicescroll && this.nicescroll.resize()
     },
     destroyScroll () {
-      this.nicescroll.remove()
-      this.nicescroll = null
-      delete this.nicescroll
+      if (this.nicescroll) {
+        this.nicescroll.remove()
+        this.nicescroll = null
+        delete this.nicescroll
+      }
     }
   },
   mounted () {

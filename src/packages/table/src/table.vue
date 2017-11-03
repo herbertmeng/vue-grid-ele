@@ -327,7 +327,6 @@
       },
 
       handleFrameSignal(signal){
-        console.log(`table layout:${signal}`)
         if(signal === FrameSymbol.UPDATE){
           this.frame.signal = FrameSymbol.UPDATE
           this.setFrameVisible(false)
