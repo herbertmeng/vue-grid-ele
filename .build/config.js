@@ -108,7 +108,7 @@ const webpackBase = {
     'vue': 'Vue',
     'lodash': '_'
   }),{
-    'jquery.nicescroll':true
+    'nicescroll':true
   }),
   devtool: false,
   performance: {
