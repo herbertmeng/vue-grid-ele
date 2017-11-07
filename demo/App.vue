@@ -2,19 +2,20 @@
   <div style="max-width: 1200px">
     <h1>Hello World</h1>
     <p>This is demo page for fss module.</p>
-    <div class="m-table">
-      <v-grid :data="data" height="300" border :columns="columns" @sort-change="handleSort" stripe/>
+    <div class="m-table" style="margin-top: 200px">
+      <v-grid :data="data" border :columns="columns" @sort-change="handleSort" @frame-done="detach" stripe/>
     </div>
-    <button @click="clickHandler">clickHandler</button>
+    <button @click="clickHandler">delete</button>
+    <button @click="detach">detach</button>
+    <button @click="restore">restore</button>
   </div>
 </template>
 
 <script type="text/jsx">
   import _ from 'lodash'
   import VGrid from '../src'
-  const {table, tableColumn} = VGrid
-  import VTable from "../src/packages/table/src/table.vue";
-
+  const {table, tableColumn, DetachTable} = VGrid
+  import VTable from "../src/packages/table/src/table.vue"
   const renderToolTip = function (h, {column, $index}) {
     return (<span>{column.label}</span>)
   }
@@ -198,7 +199,7 @@
         three: 75,
         four: 75
       }
-      const data = _.shuffle(Array.from(Array(10), (v,i) => Object.assign({}, item, {24:i,male:i+1})));
+      const data = _.shuffle(Array.from(Array(30), (v,i) => Object.assign({}, item, {24:i,male:i+1})));
       const saveData = _.cloneDeep(data)
       const resetCol = function (col) {
         col.align = 'center'
@@ -246,6 +247,19 @@
       },
       clickHandler(){
         this.data.pop()
+      },
+      detach(){
+        this.$nextTick(()=>{
+          if(!this.detachTable){
+            this.detachTable = new DetachTable('.m-table',{
+              left:'8px'
+            })
+          }
+          this.detachTable.detach()
+        })
+      },
+      restore(){
+        this.detachTable.restore()
       }
     },
     created(){
@@ -256,6 +270,9 @@
       VGrid,
       [table.name]:table,
       [tableColumn.name]:tableColumn
+    },
+    mounted(){
+
     }
   }
 </script>

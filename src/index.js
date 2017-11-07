@@ -10,7 +10,9 @@ import './packages/theme-default/lib/tooltip.css'
 import './src/theme.scss'
 import vTable from './packages/table'
 import vTableColumn from './packages/table-column'
+import DetachTable from './detach'
 import table from './table'
 table.table = vTable
 table.tableColumn = vTableColumn
+table.DetachTable = DetachTable
 export default table
