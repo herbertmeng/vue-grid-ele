@@ -1,15 +1,16 @@
 import $ from 'jquery'
 import _ from 'lodash'
 class DetachTable {
-  constructor (table, config) {
+  constructor (tableVm, config) {
     const defaultConfig = {
       left: 0,
       top: 0,
       fixedZIndex: 9,
       zIndex: 8
     }
+    this.tableVm = tableVm
     this.config = _.merge(defaultConfig, config)
-    this.$table = $(table)
+    this.$table = $(tableVm.$el)
     this.$fixed = this.$table.find('div.v-table__fixed')
     this.$fixedHead = this.$table.find('div.v-table__fixed-header-wrapper')
     this.$head = this.$table.find('div.v-table__header-wrapper')
@@ -24,6 +25,7 @@ class DetachTable {
       this.handleFixedHead()
       this.handleHead()
       this.detached = true
+      this.tableVm.resizeScroll()
     }
   }
   restore () {
@@ -32,6 +34,7 @@ class DetachTable {
         this.cache.pop()()
       }
       this.detached = false
+      this.tableVm.resizeScroll()
     }
   }
   cacheStyle ($el, css) {

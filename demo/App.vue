@@ -3,7 +3,7 @@
     <h1>Hello World</h1>
     <p>This is demo page for fss module.</p>
     <div class="m-table" style="margin-top: 200px">
-      <v-grid :data="data" border :columns="columns" @sort-change="handleSort" @frame-done="detach" stripe/>
+      <v-grid ref="grid" :data="data" border :columns="columns" @sort-change="handleSort" @frame-done="detach" stripe/>
     </div>
     <button @click="clickHandler">delete</button>
     <button @click="detach">detach</button>
@@ -251,7 +251,7 @@
       detach(){
         this.$nextTick(()=>{
           if(!this.detachTable){
-            this.detachTable = new DetachTable('.m-table',{
+            this.detachTable = new DetachTable(this.$refs.grid,{
               left:'8px'
             })
           }

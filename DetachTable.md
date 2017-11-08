@@ -3,7 +3,7 @@
 ## usage
 ```js
 import {DetachTable} from '@vue/table'
-const detachTable = new DetachTable('.v-table',{
+const detachTable = new DetachTable(this.$refs.table,{
   left:0,
   top:0,
   fixedZIndex:9,
