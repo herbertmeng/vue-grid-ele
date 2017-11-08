@@ -3,7 +3,7 @@
     <h1>Hello World</h1>
     <p>This is demo page for fss module.</p>
     <div class="m-table" style="margin-top: 200px">
-      <v-grid ref="grid" :data="data" border :columns="columns" @sort-change="handleSort" @frame-done="detach" stripe/>
+      <v-grid ref="grid" :data="data" border :columns="columns" @sort-change="handleSort" stripe/>
     </div>
     <button @click="clickHandler">delete</button>
     <button @click="detach">detach</button>
@@ -15,6 +15,7 @@
   import _ from 'lodash'
   import VGrid from '../src'
   const {table, tableColumn, DetachTable} = VGrid
+  import StickyTable from '../src/StickyTable'
   import VTable from "../src/packages/table/src/table.vue"
   const renderToolTip = function (h, {column, $index}) {
     return (<span>{column.label}</span>)
@@ -251,7 +252,7 @@
       detach(){
         this.$nextTick(()=>{
           if(!this.detachTable){
-            this.detachTable = new DetachTable(this.$refs.grid,{
+            this.detachTable = new StickyTable(this.$refs.grid,{
               left:'8px'
             })
           }
@@ -272,7 +273,11 @@
       [tableColumn.name]:tableColumn
     },
     mounted(){
-
+      setTimeout(()=>{
+        this.detachTable = new StickyTable(this.$refs.grid,{
+          left:'8px'
+        })
+      },3000)
     }
   }
 </script>

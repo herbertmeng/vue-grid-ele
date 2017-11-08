@@ -16,7 +16,9 @@
     "jquery": "^3.2.1",
     "lodash": "^4.17.4",
     "nicescroll": "^3.7.4",
-    "throttle-debounce": "^1.0.1"
+    "stickyfilljs": "^2.0.2",
+    "throttle-debounce": "^1.0.1",
+    "waypoints": "^4.0.1"
   },
   "devDependencies": {
     "@fedor/progress-webpack-plugin": "^1.0.0",
@@ -51,7 +53,7 @@
     "vue": ">=2"
   },
   "scripts": {
-    "dev": "npm test && cross-env NODE_ENV=development webpack-dev-server --config ./.build/webpack.config.dev.js --hot",
+    "dev": "cross-env NODE_ENV=development webpack-dev-server --config ./.build/webpack.config.dev.js --hot",
     "build": "npm test && cross-env NODE_ENV=production webpack --config ./.build/webpack.config.prod.js",
     "lint": "standard \"**/*.{js,vue}\"",
     "lint:fix": "standard \"**/*.{js,vue}\" --fix",
