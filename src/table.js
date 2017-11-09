@@ -3,6 +3,7 @@ import tableColumn from './packages/table-column'
 import tableColumnGroup from './table-column-group'
 import $ from 'jquery'
 import 'nicescroll'
+import StickyTable from './StickyTable'
 export default {
   inheritAttrs: false,
   name: 'v-grid',
@@ -23,6 +24,13 @@ export default {
     data: {
       type: Array,
       default: []
+    },
+    sticky: {
+      type: Boolean,
+      default:false
+    },
+    stickyConfig:{
+      type: Object
     }
   },
   components: {
@@ -47,19 +55,45 @@ export default {
         this.nicescroll = null
         delete this.nicescroll
       }
+    },
+    initSticky(){
+      this.stickyTable = new StickyTable(this,this.stickyConfig)
+    },
+    refreshSticky(){
+      this.stickyTable&&this.stickyTable.refresh()
+    },
+    destroySticky(){
+      if (this.stickyTable) {
+        this.stickyTable.destory()
+        this.stickyTable = null
+        delete this.stickyTable
+      }
     }
   },
   mounted () {
     this.$on('frame-done', () => {
       this.initScroll()
     })
+    if(this.sticky){
+      this.$on('frame-done', () => {
+        this.initSticky()
+      })
+    }
   },
   updated () {
     this.$nextTick(() => {
       this.resizeScroll()
     })
+    if(this.sticky){
+      this.$nextTick(() => {
+        this.refreshSticky()
+      })
+    }
   },
   beforeDestroy () {
     this.destroyScroll()
+    if(this.sticky){
+      this.destroySticky()
+    }
   }
 }

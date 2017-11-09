@@ -1,7 +1,6 @@
 import DetachTable from './DetachTable'
 import 'waypoints/lib/jquery.waypoints'
 import $ from 'jquery'
-
 export default class StickyTable extends DetachTable {
   constructor(tableVm, config) {
     super(tableVm, config)
@@ -19,7 +18,7 @@ export default class StickyTable extends DetachTable {
   }
 
   bindSticky() {
-    this.$head.waypoint(this.handleSticky.bind(this), {
+    [this.waypoint] = this.$head.waypoint(this.handleSticky.bind(this), {
       offset: this.config.offset
     })
   }
@@ -31,4 +30,13 @@ export default class StickyTable extends DetachTable {
       this.detach()
     }
   }
+
+  destory(){
+    this.waypoint.destroy()
+  }
+
+  refresh(){
+    window.Waypoint.refreshAll()
+  }
+
 }

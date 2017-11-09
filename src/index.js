@@ -11,8 +11,10 @@ import './src/theme.scss'
 import vTable from './packages/table'
 import vTableColumn from './packages/table-column'
 import DetachTable from './DetachTable'
+import StickyTable from './StickyTable'
 import table from './table'
 table.table = vTable
 table.tableColumn = vTableColumn
 table.DetachTable = DetachTable
+table.StickyTable = StickyTable
 export default table
