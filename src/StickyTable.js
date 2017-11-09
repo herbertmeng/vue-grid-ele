@@ -1,13 +1,14 @@
 import DetachTable from './DetachTable'
-import 'waypoints/lib/jquery.waypoints'
+// eslint-disable-next-line
 import $ from 'jquery'
+import 'waypoints/lib/jquery.waypoints'
 export default class StickyTable extends DetachTable {
-  constructor(tableVm, config) {
+  constructor (tableVm, config) {
     super(tableVm, config)
     this.bindSticky()
   }
 
-  handleHead() {
+  handleHead () {
     super.handleHead()
     const height = this.$head.css('height')
     const style = {
@@ -17,13 +18,13 @@ export default class StickyTable extends DetachTable {
     this.detachStyle(this.$fixedBody, style)
   }
 
-  bindSticky() {
+  bindSticky () {
     [this.waypoint] = this.$head.waypoint(this.handleSticky.bind(this), {
       offset: this.config.offset
     })
   }
 
-  handleSticky(direction) {
+  handleSticky (direction) {
     if (direction === 'up') {
       this.restore()
     } else if (direction === 'down') {
@@ -31,12 +32,11 @@ export default class StickyTable extends DetachTable {
     }
   }
 
-  destory(){
+  destory () {
     this.waypoint.destroy()
   }
 
-  refresh(){
+  refresh () {
     window.Waypoint.refreshAll()
   }
-
 }

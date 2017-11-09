@@ -64,8 +64,7 @@ class DetachTable {
       zIndex: this.config.fixedZIndex,
       left: this.config.left,
       top: this.config.top,
-      width,
-      // opacity:0
+      width
     })
     this.handleFixedBorder()
   }
@@ -77,10 +76,8 @@ class DetachTable {
       zIndex: this.config.zIndex,
       left: this.config.left + 1,
       top: this.config.top,
-      width,
-      // opacity:0
+      width
     })
-
   }
   handleFixedBorder () {
     const borderColor = this.$fixedHead.find('th').css('borderRightColor')

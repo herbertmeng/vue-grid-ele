@@ -4,6 +4,7 @@ import tableColumnGroup from './table-column-group'
 import $ from 'jquery'
 import 'nicescroll'
 import StickyTable from './StickyTable'
+
 export default {
   inheritAttrs: false,
   name: 'v-grid',
@@ -27,9 +28,9 @@ export default {
     },
     sticky: {
       type: Boolean,
-      default:false
+      default: false
     },
-    stickyConfig:{
+    stickyConfig: {
       type: Object
     }
   },
@@ -56,13 +57,13 @@ export default {
         delete this.nicescroll
       }
     },
-    initSticky(){
-      this.stickyTable = new StickyTable(this,this.stickyConfig)
+    initSticky () {
+      this.stickyTable = new StickyTable(this, this.stickyConfig)
     },
-    refreshSticky(){
-      this.stickyTable&&this.stickyTable.refresh()
+    refreshSticky () {
+      this.stickyTable && this.stickyTable.refresh()
     },
-    destroySticky(){
+    destroySticky () {
       if (this.stickyTable) {
         this.stickyTable.destory()
         this.stickyTable = null
@@ -74,7 +75,7 @@ export default {
     this.$on('frame-done', () => {
       this.initScroll()
     })
-    if(this.sticky){
+    if (this.sticky) {
       this.$on('frame-done', () => {
         this.initSticky()
       })
@@ -84,7 +85,7 @@ export default {
     this.$nextTick(() => {
       this.resizeScroll()
     })
-    if(this.sticky){
+    if (this.sticky) {
       this.$nextTick(() => {
         this.refreshSticky()
       })
@@ -92,7 +93,7 @@ export default {
   },
   beforeDestroy () {
     this.destroyScroll()
-    if(this.sticky){
+    if (this.sticky) {
       this.destroySticky()
     }
   }
