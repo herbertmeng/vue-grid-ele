@@ -93,7 +93,6 @@ class DetachTable {
   }
   handleFixedShadow () {
     const boxShadow = this.$fixed.css('boxShadow')
-    console.log(boxShadow)
     this.detachStyle(this.$fixedHead, {
       boxShadow
     })
