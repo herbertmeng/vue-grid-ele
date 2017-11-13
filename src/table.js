@@ -65,10 +65,14 @@ export default {
     },
     destroySticky () {
       if (this.stickyTable) {
-        this.stickyTable.destory()
+        this.stickyTable.destroy()
         this.stickyTable = null
         delete this.stickyTable
       }
+    },
+    rebuildSticky () {
+      this.destroySticky()
+      this.initSticky()
     }
   },
   mounted () {
@@ -87,7 +91,9 @@ export default {
     })
     if (this.sticky) {
       this.$nextTick(() => {
-        this.refreshSticky()
+        if (this.stickyTable && this.stickyTable.isDetached()) {
+          this.rebuildSticky()
+        }
       })
     }
   },

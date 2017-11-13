@@ -32,8 +32,9 @@ export default class StickyTable extends DetachTable {
     }
   }
 
-  destory () {
+  destroy () {
     this.waypoint.destroy()
+    this.restore()
   }
 
   refresh () {

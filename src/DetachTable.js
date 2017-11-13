@@ -19,6 +19,9 @@ class DetachTable {
     this.cache = []
     this.detached = false
   }
+  isDetached () {
+    return this.detached
+  }
   detach () {
     if (!this.detached) {
       this.handleFixedBody()
@@ -57,7 +60,7 @@ class DetachTable {
   }
   handleFixedHead () {
     this.cacheStyle(this.$fixedHead)
-    const width = parseFloat(this.$fixed.css('width')) + 2 + 'px'
+    const width = parseFloat(this.$fixed.css('width')) + 1 + 'px'
     this.detachStyle(this.$fixedHead, {
       position: 'fixed',
       overflow: 'hidden',
@@ -67,6 +70,7 @@ class DetachTable {
       width
     })
     this.handleFixedBorder()
+    this.handleFixedShadow()
   }
   handleHead () {
     const width = this.$body.css('width')
@@ -85,6 +89,13 @@ class DetachTable {
     this.detachStyle(this.$fixedHead, {
       borderLeft: border,
       borderRight: border
+    })
+  }
+  handleFixedShadow () {
+    const boxShadow = this.$fixed.css('boxShadow')
+    console.log(boxShadow)
+    this.detachStyle(this.$fixedHead, {
+      boxShadow
     })
   }
 }
