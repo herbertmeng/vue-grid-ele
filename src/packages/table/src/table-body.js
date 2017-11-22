@@ -55,15 +55,18 @@ export default {
                 on-mouseleave={ _ => this.handleMouseLeave() }
                 class={ [this.getRowClass(row, $index)] }>
                 {
-                  this._l(this.columns, (column, cellIndex) =>
-                    <td
+                  this._l(this.fixed?this.columns.filter(column=>column.fixed):this.columns, (column, cellIndex) =>{
+                    let cell = null
+                    if((!this.fixed&&!column.fixed)||(this.fixed&&column.fixed)){
+                      cell = column.renderCell.call(this._renderProxy, h, { row, column, $index, cellIndex, store: this.store, _self: this.context || this.table.$vnode.context }, columnsHidden[cellIndex])
+                    }
+                    return (<td
                       class={ [column.order ,column.id, column.align, column.className || '', columnsHidden[cellIndex] ? 'is-hidden' : '' ] }
                       on-mouseenter={ ($event) => this.handleCellMouseEnter($event, row) }
                       on-mouseleave={ this.handleCellMouseLeave }>
-                      {
-                        column.renderCell.call(this._renderProxy, h, { row, column, $index, cellIndex, store: this.store, _self: this.context || this.table.$vnode.context }, columnsHidden[cellIndex])
-                      }
-                    </td>
+                      {cell}
+                    </td>)
+                    }
                   )
                 }
                 {
