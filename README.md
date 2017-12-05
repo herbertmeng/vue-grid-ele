@@ -1,6 +1,14 @@
-##
+# vue-grid-ele
+extension of element table
 
-
+##  features
+1. support multi table head by props
+2. support custom table cell by render function
+3. support custom scroll
+4. support sticky table head
+5. fix safari layout error
+6. remove unnecessary dom and vue component to decrease memory usage
+7. add render delay to avoid splash screen when render large data with render funciton
 
 
 ## props
@@ -22,13 +30,13 @@ multilayer table head with colspan and rowspan
 ### renderDelay:`<number:1000>`
 
 ### sticky:`<boolean:false>`
-是否挂起表头
+whether sticky table head
 
 ### stickyConfig:`<object>`
 ```js
-left: 0,//挂起位置
-top: 0,//挂起位置
-fixedZIndex: 9,//固定列zIndex
-zIndex: 8//非固定列zIndex
-offset:0//触发挂起偏移量
+left: 0,//fixed to screen
+top: 0,//fixed to screen
+fixedZIndex: 9,
+zIndex: 8
+offset:0//offset trigger sticky
 ```

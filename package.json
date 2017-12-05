@@ -1,5 +1,5 @@
 {
-  "name": "@vue/table",
+  "name": "vue-grid-ele",
   "version": "1.2.3",
   "description": "a vue table component",
   "main": "dist/v-table.bundle.js",
