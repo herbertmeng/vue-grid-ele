@@ -1,17 +1,7 @@
-/**
- * Configs module for project builder extends
- *
- * MIT Licensed
- *
- * Authors:
- *   Allex Wang <allex.wxn@gmail.com> (http://iallex.com/)
- */
-
 'use strict'
 
 const path = require('path')
 const merge = require('webpack-merge')
-const ProgressPlugin = require('@fedor/progress-webpack-plugin')
 const pkg = require('../package.json')
 
 const resolve = function(dir) {
@@ -33,27 +23,6 @@ function $external (module, root) {
     return o
   }, {})
 }
-
-// Normalize fss configrations
-const fssConfig = pkg.fss || {}
-if (!fssConfig.publicPath) {
-    let cdnPrefix = fssConfig.cdnPrefix
-    if (!cdnPrefix) {
-      throw new Error('FSS cdn prefix not found.')
-    }
-    cdnPrefix = cdnPrefix.replace(/\/+$/, '')
-    fssConfig.publicPath = `${cdnPrefix}/${pkg.name}@${pkg.version}`
-}
-
-Object.defineProperty(fssConfig, 'init', {
-  writable: false,
-  configurable: false,
-  enumerable: false,
-  value: function (cfg) {
-    Object.assign(cfg.externals || (cfg.externals = {}),
-      $external(fssConfig.externals))
-  }
-})
 
 const webpackBase = {
   module: {
@@ -81,7 +50,7 @@ const webpackBase = {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
         loader: 'file-loader',
         options: {
-          publicPath: (fssConfig && fssConfig.publicPath || '') + '/dist/',
+          publicPath: '/dist/',
           name: 'images/[name].[ext]?[hash]'
         }
       }
@@ -99,14 +68,12 @@ const webpackBase = {
     },
     extensions: [".js", ".json", ".vue", ".jsx"]
   },
-  plugins: [
-    new ProgressPlugin()
-  ],
+  plugins: [],
   externals: Object.assign($external({
     'jquery': '$',
-    'react': 'React',
     'vue': 'Vue',
-    'lodash': '_'
+    'lodash': '_',
+    '@vue/utils':'VueUtils'
   }),{
     'nicescroll':true
   }),
@@ -116,7 +83,6 @@ const webpackBase = {
   }
 }
 
-fssConfig.init(webpackBase)
 
 // make webpack config extendable.
 ;(function extendable (o) {
@@ -133,8 +99,6 @@ fssConfig.init(webpackBase)
 }(webpackBase))
 
 module.exports = {
-  fssConfig,
   webpackBase
 }
 
-// vim: set ft=javascript fdm=marker et ff=unix tw=80 sw=2:

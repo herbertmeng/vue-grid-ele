@@ -51,4 +51,4 @@ module.exports = webpackBase.extend({
   ]
 })
 
-// vim: set ft=javascript fdm=marker et ff=unix tw=80 sw=2:
+

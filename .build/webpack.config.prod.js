@@ -108,10 +108,6 @@ const genWebpackCfg = function (filename, library, option) {
         parallel: true,
         sourceMap: true,
         comments: function (n, c) {
-          /*
-          IMPORTANT: Please preserve 3rd-party library license info,
-          inspired from @allex/amd-build-worker/config/util.js
-          */
           var text = c.value, type = c.type;
           if (type == 'comment2') {
             return /^!|@preserve|@license|@cc_on|MIT/i.test(text)
@@ -151,4 +147,3 @@ const entries = createOutputList(fssConfig.distname, fssConfig.library).map(func
 
 module.exports = entries
 
-// vim: set ft=javascript fdm=marker et ff=unix tw=80 sw=2:

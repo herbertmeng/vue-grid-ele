@@ -21,8 +21,6 @@
     "waypoints": "^4.0.1"
   },
   "devDependencies": {
-    "@fedor/progress-webpack-plugin": "^1.0.0",
-    "@fedor/standard": "latest",
     "babel-core": "^6.25.0",
     "babel-helper-vue-jsx-merge-props": "^2.0.2",
     "babel-loader": "^7.1.1",
@@ -49,15 +47,11 @@
     "webpack-merge": "^4.1.0"
   },
   "peerDependencies": {
-    "@vue/utils": "^1.0.0",
     "vue": ">=2"
   },
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack-dev-server --config ./.build/webpack.config.dev.js --hot",
     "build": "npm test && cross-env NODE_ENV=production webpack --config ./.build/webpack.config.prod.js",
-    "lint": "standard \"**/*.{js,vue}\"",
-    "lint:fix": "standard \"**/*.{js,vue}\" --fix",
-    "test": "npm run lint",
     "prepublish": "npm run build",
     "start": "npm run dev"
   },
@@ -65,20 +59,8 @@
     {
       "name": "ljwrer",
       "email": "rayjump@163.com"
-    },
-    {
-      "name": "allex",
-      "email": "allex.wxn@gmail.com"
     }
   ],
-  "fss": {
-    "distname": "v-table",
-    "library": "vTable",
-    "cdnPrefix": "//s2.analysys.cn/-/",
-    "externals": {
-      "@vue/utils": "VueUtils"
-    }
-  },
   "standard": {
     "ignore": [
       "*.tmp",
